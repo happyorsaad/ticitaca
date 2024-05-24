@@ -49,32 +49,32 @@ export class GameRoom extends Room<GameState> {
       return;
     }
 
-    let replaceOwnerTimeout;
-    if (player.isOwner) {
-      console.log(client.sessionId + " was owner");
-      replaceOwnerTimeout = this.clock.setTimeout(
-        () =>
-          this.dispatcher.dispatch(new NewOwnerCommand(), {
-            lastOwnerId: client.sessionId,
-          }),
-        15_000
-      );
-    }
+    // let replaceOwnerTimeout;
+    // if (player.isOwner) {
+    //   console.log(client.sessionId + " was owner");
+    //   replaceOwnerTimeout = this.clock.setTimeout(
+    //     () =>
+    //       this.dispatcher.dispatch(new NewOwnerCommand(), {
+    //         lastOwnerId: client.sessionId,
+    //       }),
+    //     15_000
+    //   );
+    // }
 
-    console.log("on Leave");
+    // console.log("on Leave");
 
-    try {
-      console.log("waiting for reconnection from :", client.sessionId);
-      await this.allowReconnection(client, 60);
-      console.log("reconnected");
+    // try {
+    //   console.log("waiting for reconnection from :", client.sessionId);
+    //   await this.allowReconnection(client, 60);
+    //   console.log("reconnected");
 
-      if (replaceOwnerTimeout) replaceOwnerTimeout.clear();
-      this.dispatcher.dispatch(new ReconnectPlayerCommand(), {
-        sessionId: client.sessionId,
-      });
-    } catch {
-      player.hasLeft = true;
-    }
+    //   if (replaceOwnerTimeout) replaceOwnerTimeout.clear();
+    //   this.dispatcher.dispatch(new ReconnectPlayerCommand(), {
+    //     sessionId: client.sessionId,
+    //   });
+    // } catch {
+    //   player.hasLeft = true;
+    // }
   }
 
   onDispose() {

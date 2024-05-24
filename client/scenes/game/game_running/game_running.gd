@@ -1,14 +1,16 @@
 extends Control
 class_name GameRunning
 
-@onready var opponent_pieces: GridContainer = $Layout/OpponentPieces
 @onready var game_board = $Layout/Board
-@onready var player_pieces = $Layout/PlayerPieces
 @onready var opposition_details = $OpponentDetails
 @onready var player_details = $PlayerDetails
+@onready var opponents_pieces = $Layout/OpponentsPieces
+@onready var player_pieces = $Layout/PlayerPieces
 
 const PIECE = preload("res://scenes/piece/piece.tscn")
 const SLOT = preload("res://scenes/slot/board_slot.tscn")
+
+# Schema Constants
 const Schema = preload("res://network/game_schema.gd")
 const GamePlayState = Schema.GamePlayState
 const PieceType = Schema.PieceType
@@ -38,6 +40,7 @@ const PIECE_TYPES_FOR_IDX = {
 
 var my_id
 var other_id
+var current_state
 
 func _ready():
 	SignalManager.on_piece_dropped.connect(_on_piece_dropped_in_slot)
@@ -47,16 +50,18 @@ func on_state_update(prev_state: Schema.GameState, new_state: Schema.GameState, 
 	update_ids(new_state.players)
 	update_opponent_pieces(new_state)
 	update_player_pieces(new_state)
-	update_player_details(new_state)
+	update_player_details(new_state.players)
 	if is_polled:
 		update_board_pieces(new_state)
+		
+	current_state = new_state
 	
 func on_message_received(type, message):
 	if type == "player_move":
 		var idx = message["playerIdx"]	
 		var piece_type = message["pieceType"]
 		var location = message["location"]
-		if self.state and idx != self.state["players"][my_id].idx:
+		if self.current_state and idx != current_state.players.at(my_id).idx:
 			add_piece_to_slot(location, piece_type)
 			boop(location, piece_type, false)
 		
@@ -96,12 +101,12 @@ func get_other_player_id(players, my_id):
 func update_player_details(players):
 	var template = "%s\nWins : %d"
 	
-	var opp = players.get(self.other_id)
+	var opp = players.at(self.other_id)
 	opposition_details.text = template % [
 		opp.name, opp.numWins
 	]
 	
-	var my = players.get(self.my_id)
+	var my = players.at(self.my_id)
 	player_details.text = template % [
 		my.name, my.numWins
 	]
@@ -109,14 +114,11 @@ func update_player_details(players):
 func update_opponent_pieces(state):
 	if not self.other_id:
 		pass
-	print(self.other_id,  state.players)
 	var other_player = state.players.at(other_id)
-	print(self.other_id, state.players)
-	print(opponent_pieces)
-	update_pieces(opponent_pieces, other_player)
+	update_pieces(opponents_pieces, other_player)
 	
 func update_board_pieces(state):
-	var board: Array = state.board
+	var board: Array = state.board.to_object()
 	
 	if game_board.get_child_count() == 0:
 		for index in board.size():
@@ -131,15 +133,26 @@ func update_board_pieces(state):
 		var slot: Slot = game_board.get_children()[index]
 		slot.slot_idx = index
 		var piece_type = board[index]
-		if piece_type != GameManager.PieceType.NO_PIECE:
+		if piece_type != PieceType.NO_PIECE:
 			slot.add_child(new_piece(piece_type, false))
 
 func update_player_pieces(state):
-	if not state.players.has(self.my_id):
+	if not state.players.keys().has(self.my_id):
 		return
-	var my_player = state.players[self.my_id]
-	print(state.players, self.my_id)
+	var my_player = state.players.at(self.my_id)
 	update_pieces(player_pieces, my_player)
+	disable_if_not_my_turn(my_player, state.currentTurn)
+
+func disable_if_not_my_turn(my_player, currentTurn):
+	var mouse_filter_value = Control.MOUSE_FILTER_STOP
+	print("disable_if_not_my_turn", my_player.idx,currentTurn)
+	if not my_player.idx == currentTurn:
+		mouse_filter_value = Control.MOUSE_FILTER_IGNORE
+
+	for node in player_pieces.get_children():
+		node.mouse_filter = mouse_filter_value
+		for child in node.get_children():
+			child.mouse_filter = mouse_filter_value
 
 func update_pieces(pieces_ui, player):
 	var player_idx = player.idx
@@ -154,15 +167,6 @@ func update_pieces(pieces_ui, player):
 	
 	for i in range(player.numOfLargePieces):
 		pieces_ui.add_child(new_piece(large_piece))
-		
-	var mouse_filter_value = Control.MOUSE_FILTER_STOP
-	if not is_my_turn():
-		mouse_filter_value = Control.MOUSE_FILTER_IGNORE
-	
-	for node in pieces_ui.get_children():
-		node.mouse_filter = mouse_filter_value
-		for child in node.get_children():
-			child.mouse_filter = mouse_filter_value
 
 func new_piece(type, can_be_dragged = true) -> Piece:
 	var piece = PIECE.instantiate()
@@ -170,10 +174,8 @@ func new_piece(type, can_be_dragged = true) -> Piece:
 	piece.can_be_dragged = can_be_dragged
 	return piece
 
-func is_my_turn():
-	if not self.state:
-		return false
-	return self.state["players"][my_id].idx == self.state["currentTurn"]
+func is_my_turn(player, currentTurn):
+	return player.idx == currentTurn
 
 func is_in_bounds(row, col):
 	return row >= 0 && row <= 5 && col >= 0 && col <= 5
@@ -253,9 +255,9 @@ func move_piece_to_slot(source_slot, target_slot, type):
 	
 	
 func can_move(placed_type, neighbour_type):
-	if placed_type == GameManager.PieceType.LARGE_0 || placed_type == GameManager.PieceType.LARGE_1:
+	if placed_type == PieceType.LARGE_0 || placed_type == PieceType.LARGE_1:
 		return true
-	return neighbour_type == GameManager.PieceType.SMALL_0 || neighbour_type == GameManager.PieceType.SMALL_1
+	return neighbour_type == PieceType.SMALL_0 || neighbour_type == PieceType.SMALL_1
 
 func __mock():
 	self.other_id = "y-KLOZaVI"
