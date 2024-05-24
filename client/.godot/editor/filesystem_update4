@@ -6,3 +6,4 @@ res://scenes/game/game_running/game_running.gd
 res://scenes/game/game_running/game_running.tscn
 res://scenes/piece/piece.tscn
 res://scenes/piece/piece.gd
+res://scenes/slot/slot.gd

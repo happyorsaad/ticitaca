@@ -53,7 +53,7 @@ func _on_mouse_exited():
 
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_double_click():
-		# On Double Click
+		#SignalManager.on_piece_dropped.emit(slot_idx, 0)
 		pass
 		
 func _can_drop_data(at_position, data):

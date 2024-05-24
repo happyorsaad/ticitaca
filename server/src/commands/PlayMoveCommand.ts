@@ -21,27 +21,31 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
   ];
 
   validate({ sessionId } = this.payload) {
+    console.log("validate play move");
     if(this.state.playState !== GamePlayState.RUNNING)
       return false;
-
+    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
     var player = this.state.players.get(sessionId);
 
     if(player.idx !== this.state.currentTurn){
       return false;
     }
-
+    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
     if(this.payload.location < 0 || this.payload.location > this.state.board.length) {
       return false;
     }
-
+    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
+    
     if(this.state.board[this.payload.location] !== PieceType.NO_PIECE) {
       return false;
     }
-
+    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
+    
     if(!this.isValidPiece(player.idx, this.payload.pieceType)){
       return false;
     }
-
+    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
+    
     return true;
   }
 
@@ -62,6 +66,7 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
       "pieceType" : pieceType,
       "location" : location
     });
+    console.log("play move", sessionId, pieceType, location)
     this.state.board[location] = pieceType;
     this.boop(location, pieceType);
     this.state.currentTurn = this.state.currentTurn === 0 ? 1 : 0;
@@ -145,18 +150,18 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
 
     if(smallPieceMatches.length === 1){
       if(smallPieceMatches[0]["pieces"][0] === PieceType.SMALL_0){
-        this.state.players.get(this.state.indexToSessinId[0]).numOfSmallPieces -= 3;
         this.state.players.get(this.state.indexToSessinId[0]).numOfLargePieces += 3;
         smallPieceMatches[0]["locations"].forEach((location: any) => {
           this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
         });
       } else if(smallPieceMatches[0]["pieces"][0] === PieceType.SMALL_1){
-        this.state.players.get(this.state.indexToSessinId[1]).numOfSmallPieces -= 3;
         this.state.players.get(this.state.indexToSessinId[1]).numOfLargePieces += 3;
         smallPieceMatches[0]["locations"].forEach((location: any) => {
           this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
         });
       }
+
+      return;
     }
 
     this.room.dispatcher.dispatch(new ChooseSmallPieceRowCommand(), {

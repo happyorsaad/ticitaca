@@ -15,7 +15,7 @@ const Schema = preload("res://network/game_schema.gd")
 const GamePlayState = Schema.GamePlayState
 
 var state : Schema.GameState
-var prev_state: Schema.GameState
+var prev_state_obj
 
 const GAME_SCREENS = {
 	GamePlayState.RUNNING : game_running,
@@ -33,7 +33,8 @@ func _on_connection_lost():
 func _on_state_changed(new_state):
 	if not new_state:
 		return
-	handle_new_state(new_state, false)
+	var new_state_obj = new_state.to_object()
+	handle_new_state(new_state, new_state_obj, false)
 	
 func _on_message_received(type, message):
 	var current_scene = get_current_screen()
@@ -41,33 +42,23 @@ func _on_message_received(type, message):
 		current_scene.on_message_received(type, message)
 		
 func _on_refresh_state_timeout():
-	print("_on_refresh_state_timeout")
 	var new_state = Client.get_room_state()
-	print("new_state", new_state)
-	print("prev_state", self.prev_state)
+	var new_state_obj = new_state.to_object()
 	if not new_state:
 		return
-	handle_new_state(new_state, true)
+	handle_new_state(new_state, new_state_obj, true)
 	
-func handle_new_state(new_state: Schema.GameState, is_polled):
-	if not prev_state:
-		change_game_screen_to(
-			GAME_SCREENS[new_state.playState]
-		)
-	
-	if prev_state and prev_state.playState != new_state.playState:
-		change_game_screen_to(
-			GAME_SCREENS[new_state.playState]
-		)
-	
-	print("UPDATING STATE")
-	
-	var current_screen = get_current_screen()
-	if current_screen:
-		current_screen.on_state_update(self.prev_state, new_state, is_polled)
-	
-	self.prev_state = new_state
-	
+func handle_new_state(new_state, new_state_obj, is_polled):
+	if not Utils.is_equal_dict(prev_state_obj, new_state_obj):
+		if not prev_state_obj or (prev_state_obj["playState"] != new_state_obj["playState"]):
+			change_game_screen_to(
+				GAME_SCREENS[new_state.playState]
+			)
+		var current_screen = get_current_screen()
+		if current_screen:
+			current_screen.on_state_update(new_state, is_polled)
+		prev_state_obj = new_state_obj
+		
 func update_is_connected(state):
 	if has_only_one_player(state) or other_player_has_disconnected(state):
 		SignalManager.change_screen_to.emit(player_disconnected)
@@ -92,7 +83,6 @@ func other_player_has_disconnected(state):
 	return false
 	
 func get_current_screen():
-	print("state_screen.get_child_count()", state_screen.get_child_count())
 	if state_screen.get_child_count() > 0:
 		return state_screen.get_children()[0]
 	return null
@@ -101,5 +91,4 @@ func change_game_screen_to(screen):
 	for prev in state_screen.get_children():
 		prev.queue_free()
 	var curr = screen.instantiate()
-	print("change_game_screen_to", curr)
 	state_screen.add_child(curr)

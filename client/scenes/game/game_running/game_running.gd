@@ -42,20 +42,15 @@ var other_id
 var current_state
 
 func _ready():
-	print("game_running_ready")
 	SignalManager.on_piece_dropped.connect(_on_piece_dropped_in_slot)
 
-func on_state_update(prev_state: Schema.GameState, new_state: Schema.GameState, is_polled):
-	print("on_state_update", "game_running")
+func on_state_update(new_state: Schema.GameState, is_polled):
 	update_ids(new_state.players)
 	update_opponent_pieces(new_state)
 	update_player_pieces(new_state)
 	update_player_details(new_state.players)
-	if is_polled:
-		update_board_pieces(new_state)
-		
-	current_state = new_state
-	print(my_id, " ----- >>>>", new_state.currentTurn)
+	update_board_pieces(new_state)
+	self.current_state = new_state
 	
 func on_message_received(type, message):
 	if type == "player_move":
@@ -173,7 +168,6 @@ func new_piece(type, can_be_dragged = true) -> Piece:
 	var piece = PIECE.instantiate()
 	piece.piece_type = type
 	piece.can_be_dragged = can_be_dragged
-	print("piece", piece.can_be_dragged)
 	return piece
 
 func is_my_turn(player, currentTurn):
@@ -220,11 +214,9 @@ func boop(idx, type, update_board = true):
 	
 	var tween = get_tree().create_tween().set_loops(1)
 	tween.set_parallel()
-	print(my_id, " ---- pieces_to_move ---- ", pieces_to_move)
 	for move in pieces_to_move:
 		var piece = move["source"].get_child_piece()
 		var target_slot = move["target"]
-		print(my_id, " ::: " , piece.global_position, " >>>>> ", target_slot.global_position)
 		tween.tween_property(piece, "global_position", target_slot.global_position, 0.5)
 	
 	await tween.finished

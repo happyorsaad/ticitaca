@@ -17,6 +17,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="RefreshState" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="StateScreen" type="Control" parent="."]
