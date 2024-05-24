@@ -42,11 +42,12 @@ func _draw():
 	var position = Vector2(min_size/2, min_size/2)
 	var size = get_piece_size()
 	draw_circle(position, size/2, color)
+	if not can_be_dragged:
+		self.self_modulate = Color.LIGHT_SLATE_GRAY
 	
 func _get_drag_data(position):
 	if not can_be_dragged:
 		return null
-		
 	set_drag_preview(create_preview_control()) 
 	var drag_data = {
 		"type": "piece_data",

@@ -41,17 +41,15 @@ func _on_message_received(type, message):
 		current_scene.on_message_received(type, message)
 		
 func _on_refresh_state_timeout():
-	var new_state = Client.get_room_state() 
+	print("_on_refresh_state_timeout")
+	var new_state = Client.get_room_state()
+	print("new_state", new_state)
+	print("prev_state", self.prev_state)
 	if not new_state:
 		return
 	handle_new_state(new_state, true)
 	
 func handle_new_state(new_state: Schema.GameState, is_polled):
-	if prev_state and Utils.is_equal_dict(new_state.to_object(), prev_state.to_object()):
-		return
-	
-	print("GAME_SCREENS[new_state.playState]", GAME_SCREENS[new_state.playState])
-	
 	if not prev_state:
 		change_game_screen_to(
 			GAME_SCREENS[new_state.playState]
@@ -62,10 +60,10 @@ func handle_new_state(new_state: Schema.GameState, is_polled):
 			GAME_SCREENS[new_state.playState]
 		)
 	
-	var current_screen: GameRunning = get_current_screen()
-		
+	print("UPDATING STATE")
+	
+	var current_screen = get_current_screen()
 	if current_screen:
-		print("on_state_update", current_screen.has_method("on_state_update"))
 		current_screen.on_state_update(self.prev_state, new_state, is_polled)
 	
 	self.prev_state = new_state
@@ -93,7 +91,7 @@ func other_player_has_disconnected(state):
 	
 	return false
 	
-func get_current_screen() -> GameRunning:
+func get_current_screen():
 	print("state_screen.get_child_count()", state_screen.get_child_count())
 	if state_screen.get_child_count() > 0:
 		return state_screen.get_children()[0]
