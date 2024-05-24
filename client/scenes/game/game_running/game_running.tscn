@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://parkahruciqb"]
+
+[ext_resource type="Script" path="res://scenes/game/game_running/game_running.gd" id="1_ykyi5"]
+
+[node name="GameRunning" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ykyi5")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Layout" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OpponentsPieces" type="GridContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="Board" type="GridContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="PlayerPieces" type="GridContainer" parent="Layout"]
+layout_mode = 2
+
+[node name="OpponentDetails" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="PlayerDetails" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0

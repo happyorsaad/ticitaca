@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://dg11pttgd2hn4"]
+
+[ext_resource type="Script" path="res://scenes/player_disconnected/player_disconnected.gd" id="1_u421k"]
+[ext_resource type="FontFile" uid="uid://v0dvnefqf7lq" path="res://assets/ui/Font/kenvector_future_thin.ttf" id="2_67k0h"]
+[ext_resource type="PackedScene" uid="uid://dw21b7rva1oqd" path="res://scenes/spinner/spinner.tscn" id="3_8qbeg"]
+[ext_resource type="Texture2D" uid="uid://dkpecrdubducf" path="res://assets/ui/PNG/yellow_button05.png" id="4_17i6k"]
+[ext_resource type="Texture2D" uid="uid://3lrfr0breoad" path="res://assets/ui/PNG/yellow_button13.png" id="5_8f0ks"]
+[ext_resource type="LabelSettings" uid="uid://c8sdithnhuqdc" path="res://assets/button_label.tres" id="6_6ryec"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ey1p"]
+font = ExtResource("2_67k0h")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[node name="PlayerDisconnected" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u421k")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VB" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -71.0
+offset_right = 150.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConnectionLost" type="Label" parent="VB"]
+layout_mode = 2
+text = "Other Player Has Left The Room
+Wait For The Other Player To Rejoin"
+label_settings = SubResource("LabelSettings_2ey1p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="VB"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VB"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VB"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="VB"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="VB"]
+layout_mode = 2
+
+[node name="ProgressSpinner" parent="VB" instance=ExtResource("3_8qbeg")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="LeaveContainer" type="MarginContainer" parent="VB"]
+layout_mode = 2
+theme_override_constants/margin_top = 250
+
+[node name="Leave" type="TextureButton" parent="VB/LeaveContainer"]
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("4_17i6k")
+texture_pressed = ExtResource("5_8f0ks")
+stretch_mode = 0
+
+[node name="Leave Room" type="Label" parent="VB/LeaveContainer/Leave"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+label_settings = ExtResource("6_6ryec")
+
+[connection signal="pressed" from="VB/LeaveContainer/Leave" to="." method="_on_leave_pressed"]

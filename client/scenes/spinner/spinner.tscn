@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw21b7rva1oqd"]
+
+[ext_resource type="Texture2D" uid="uid://be2jnhppu0yhr" path="res://assets/ui/Godot Spinner Progress.png" id="1_h0cuq"]
+[ext_resource type="Script" path="res://scenes/spinner/spinner.gd" id="2_7blq5"]
+
+[node name="ProgressSpinner" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SpinnerBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 45.0
+grow_horizontal = 2
+value = 50.0
+fill_mode = 4
+texture_progress = ExtResource("1_h0cuq")
+radial_fill_degrees = 200.0
+script = ExtResource("2_7blq5")

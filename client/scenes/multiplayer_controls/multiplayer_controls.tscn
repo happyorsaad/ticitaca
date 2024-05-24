@@ -1,0 +1,314 @@
+[gd_scene load_steps=15 format=3 uid="uid://dfnl3eryag2qu"]
+
+[ext_resource type="Script" path="res://scenes/multiplayer_controls/multiplayer_controls.gd" id="1_paa8e"]
+[ext_resource type="FontFile" uid="uid://v0dvnefqf7lq" path="res://assets/ui/Font/kenvector_future_thin.ttf" id="2_obd8g"]
+[ext_resource type="Texture2D" uid="uid://dkpecrdubducf" path="res://assets/ui/PNG/yellow_button05.png" id="2_ug73l"]
+[ext_resource type="Texture2D" uid="uid://3lrfr0breoad" path="res://assets/ui/PNG/yellow_button13.png" id="3_rng7c"]
+[ext_resource type="LabelSettings" uid="uid://c8sdithnhuqdc" path="res://assets/button_label.tres" id="4_2qxn8"]
+[ext_resource type="Texture2D" uid="uid://bknepcvmv17wf" path="res://assets/ui/PNG/blue_button05.png" id="5_kofuy"]
+[ext_resource type="Texture2D" uid="uid://djeus1x0sodyx" path="res://assets/ui/PNG/blue_button13.png" id="6_demle"]
+[ext_resource type="Texture2D" uid="uid://c6jlx4vx6jkf" path="res://assets/ui/PNG/green_button04.png" id="7_nk1bv"]
+[ext_resource type="Texture2D" uid="uid://5mdw5vqvh0k7" path="res://assets/ui/PNG/green_button13.png" id="8_eji8q"]
+[ext_resource type="Texture2D" uid="uid://dniqg1ypqlcsg" path="res://assets/ui/PNG/red_button01.png" id="9_y7ldd"]
+[ext_resource type="Texture2D" uid="uid://blnahmsuiwned" path="res://assets/ui/PNG/red_button10.png" id="10_jbn2r"]
+[ext_resource type="PackedScene" uid="uid://dw21b7rva1oqd" path="res://scenes/spinner/spinner.tscn" id="12_bjl6l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qah8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_baftg"]
+font = ExtResource("2_obd8g")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[node name="MultiplayerControls" type="CanvasLayer"]
+script = ExtResource("1_paa8e")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -50.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="ServerIP" type="MarginContainer" parent="Start"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="ServerIP" type="LineEdit" parent="Start/ServerIP"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(650, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_4qah8")
+text = "ws://localhost:2567"
+placeholder_text = "> Server IP"
+alignment = 1
+caret_blink = true
+
+[node name="PlayerNameContainer" type="MarginContainer" parent="Start"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 100
+
+[node name="PlayerName" type="LineEdit" parent="Start/PlayerNameContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(650, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_4qah8")
+placeholder_text = "> Player Name"
+alignment = 1
+caret_blink = true
+
+[node name="HostGame" type="TextureButton" parent="Start"]
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_ug73l")
+texture_pressed = ExtResource("3_rng7c")
+stretch_mode = 0
+
+[node name="Host Game Label" type="Label" parent="Start/HostGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Host Game"
+label_settings = ExtResource("4_2qxn8")
+
+[node name="JoinGame" type="TextureButton" parent="Start"]
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_kofuy")
+texture_pressed = ExtResource("6_demle")
+stretch_mode = 0
+
+[node name="Join Game Label" type="Label" parent="Start/JoinGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join Game"
+label_settings = ExtResource("4_2qxn8")
+
+[node name="Host" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -71.0
+offset_right = 150.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RoomId" type="Label" parent="Host"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_obd8g")
+theme_override_font_sizes/font_size = 50
+text = "Room Id"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpaceMarker" type="Label" parent="Host"]
+layout_mode = 2
+
+[node name="RoomName" type="RichTextLabel" parent="Host"]
+custom_minimum_size = Vector2(250, 100)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "Room Name"
+selection_enabled = true
+
+[node name="LeaveContainer" type="MarginContainer" parent="Host"]
+layout_mode = 2
+theme_override_constants/margin_top = 250
+
+[node name="Leave" type="TextureButton" parent="Host/LeaveContainer"]
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("2_ug73l")
+texture_pressed = ExtResource("3_rng7c")
+stretch_mode = 0
+
+[node name="Leave Room" type="Label" parent="Host/LeaveContainer/Leave"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Leave Room"
+label_settings = ExtResource("4_2qxn8")
+
+[node name="Join" type="VBoxContainer" parent="."]
+visible = false
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -115.5
+offset_bottom = 115.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="RoomIdContainer" type="MarginContainer" parent="Join"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 40
+
+[node name="RoomId" type="LineEdit" parent="Join/RoomIdContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(650, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_4qah8")
+placeholder_text = "> Room Id"
+alignment = 1
+caret_blink = true
+
+[node name="JoinContainer" type="MarginContainer" parent="Join"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="Join" type="TextureButton" parent="Join/JoinContainer"]
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("7_nk1bv")
+texture_pressed = ExtResource("8_eji8q")
+stretch_mode = 0
+
+[node name="Join Game" type="Label" parent="Join/JoinContainer/Join"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join Room"
+label_settings = ExtResource("4_2qxn8")
+
+[node name="BackContainer" type="MarginContainer" parent="Join"]
+layout_mode = 2
+theme_override_constants/margin_top = 75
+
+[node name="Back" type="TextureButton" parent="Join/BackContainer"]
+custom_minimum_size = Vector2(500, 125)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("9_y7ldd")
+texture_pressed = ExtResource("10_jbn2r")
+stretch_mode = 0
+
+[node name="Leave" type="Label" parent="Join/BackContainer/Back"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Go Back"
+label_settings = ExtResource("4_2qxn8")
+
+[node name="MessageContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -57.0
+offset_right = 126.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 250
+
+[node name="ProgressSpinner" parent="MessageContainer" instance=ExtResource("12_bjl6l")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Message" type="Label" parent="MessageContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_baftg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Start/HostGame" to="." method="_on_host_game_pressed"]
+[connection signal="pressed" from="Start/JoinGame" to="." method="_on_join_game_pressed"]
+[connection signal="pressed" from="Host/LeaveContainer/Leave" to="." method="_on_leave_pressed"]
+[connection signal="pressed" from="Join/JoinContainer/Join" to="." method="_on_join_room_pressed"]
+[connection signal="pressed" from="Join/BackContainer/Back" to="." method="_on_back_pressed"]
