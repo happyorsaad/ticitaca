@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://parkahruciqb"]
+[gd_scene load_steps=4 format=3 uid="uid://parkahruciqb"]
 
 [ext_resource type="Script" path="res://scenes/game/game_running/game_running.gd" id="1_ykyi5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_re7e3"]
+thickness = 2
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_v3o7o"]
+thickness = 2
 
 [node name="GameRunning" type="Control"]
 layout_mode = 3
@@ -20,20 +26,43 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Layout" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OpponentsPieces" type="GridContainer" parent="Layout"]
 layout_mode = 2
+size_flags_horizontal = 4
 columns = 4
+
+[node name="OpponentSeperator" type="HSeparator" parent="Layout"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxLine_re7e3")
 
 [node name="Board" type="GridContainer" parent="Layout"]
 layout_mode = 2
+size_flags_horizontal = 4
 columns = 6
+
+[node name="PlayerSeperator" type="HSeparator" parent="Layout"]
+layout_mode = 2
+theme_override_constants/separation = 40
+theme_override_styles/separator = SubResource("StyleBoxLine_v3o7o")
 
 [node name="PlayerPieces" type="GridContainer" parent="Layout"]
 layout_mode = 2
+size_flags_horizontal = 4
 columns = 4
 
 [node name="OpponentDetails" type="Label" parent="."]
