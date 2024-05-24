@@ -7,3 +7,5 @@ res://scenes/game/game_running/game_running.tscn
 res://scenes/piece/piece.tscn
 res://scenes/piece/piece.gd
 res://scenes/slot/slot.gd
+res://scenes/multiplayer_controls/multiplayer_controls.tscn
+res://scenes/multiplayer_controls/multiplayer_controls.gd

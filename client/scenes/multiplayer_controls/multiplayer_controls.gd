@@ -10,6 +10,7 @@ var game_screen = preload("res://scenes/game/game.tscn")
 # Start Menu
 @onready var start = $Start
 @onready var player_name = $Start/PlayerNameContainer/PlayerName
+@onready var host_game_btn = $Start/HostGame
 
 # Host Menu
 @onready var host = $Host
@@ -18,6 +19,7 @@ var game_screen = preload("res://scenes/game/game.tscn")
 # Join Menu
 @onready var join = $Join
 @onready var room_id_input = $Join/RoomIdContainer/RoomId
+@onready var join_room_btn = $Join/JoinContainer/Join
 
 # Info Controls
 @onready var progress_spinner = $MessageContainer/ProgressSpinner
@@ -39,10 +41,15 @@ func _game_state_change(state):
 		SignalManager.change_screen_to.emit(game_screen)
 	
 func _on_host_game_pressed():
+	host_game_btn.disabled = true
+	
 	var name = _get_player_name()
 	var ip = server_ip.text.strip_edges()
 	show_spinner()
 	var result = await Client.join_or_create({"name": name}, ip)
+	
+	host_game_btn.disabled = false	
+	
 	if not result:
 		show_message(HOST_ERROR_MESSAGE)
 	else:
@@ -95,12 +102,16 @@ func _on_leave_pressed():
 func _on_join_room_pressed():
 	show_spinner()
 	
+	join_room_btn.disabled = true
+	
 	var name = _get_player_name()
 	var room_id = room_id_input.text.strip_edges()
 	var ip = server_ip.text.strip_edges()
 	var result = await Client.join_room(room_id, {
 		"name": name
 	},ip)
+	
+	join_room_btn.disabled = false
 	
 	if not result:
 		show_message(JOIN_ERROR_MESSAGE)

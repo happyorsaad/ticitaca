@@ -14,10 +14,10 @@ export default config({
          * Define your room handlers:
          */
         gameServer.define('game_room', GameRoom);
-        if (process.env.NODE_ENV !== "production") {
-            // simulate 200ms latency between server and client.
-            gameServer.simulateLatency(5000);
-        }
+        // if (process.env.NODE_ENV !== "production") {
+        //     // simulate 200ms latency between server and client.
+        //     gameServer.simulateLatency(5000);
+        // }
 
     },
 

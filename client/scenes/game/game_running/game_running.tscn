@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://parkahruciqb"]
+[gd_scene load_steps=6 format=3 uid="uid://parkahruciqb"]
 
 [ext_resource type="Script" path="res://scenes/game/game_running/game_running.gd" id="1_ykyi5"]
+[ext_resource type="PackedScene" uid="uid://bhjw0t24ya703" path="res://scenes/piece/piece.tscn" id="2_5s1xv"]
+[ext_resource type="PackedScene" uid="uid://blo28ep4j1q8d" path="res://scenes/slot/board_slot.tscn" id="3_3jnpu"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_re7e3"]
 thickness = 2
@@ -44,6 +46,18 @@ layout_mode = 2
 size_flags_horizontal = 4
 columns = 4
 
+[node name="Piece" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
+
+[node name="Piece2" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
+
+[node name="Piece3" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
+
+[node name="Piece4" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
+
 [node name="OpponentSeperator" type="HSeparator" parent="Layout"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 2
@@ -55,6 +69,114 @@ layout_mode = 2
 size_flags_horizontal = 4
 columns = 6
 
+[node name="Slot" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot2" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot3" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot4" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot5" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot6" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot7" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot8" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot9" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot10" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot11" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot12" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot13" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot14" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot15" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot16" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot17" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot18" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot19" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot20" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot21" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot22" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot23" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot24" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot25" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot26" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot27" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot28" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot29" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot30" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot31" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot32" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot33" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot34" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot35" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
+[node name="Slot36" parent="Layout/Board" instance=ExtResource("3_3jnpu")]
+layout_mode = 2
+
 [node name="PlayerSeperator" type="HSeparator" parent="Layout"]
 layout_mode = 2
 theme_override_constants/separation = 40
@@ -64,6 +186,18 @@ theme_override_styles/separator = SubResource("StyleBoxLine_v3o7o")
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 4
+
+[node name="Piece" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
+
+[node name="Piece2" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
+
+[node name="Piece3" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
+
+[node name="Piece4" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
+layout_mode = 2
 
 [node name="OpponentDetails" type="Label" parent="."]
 layout_mode = 1

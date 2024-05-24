@@ -64,7 +64,7 @@ export class GameState extends Schema {
     this.resetBoard();
     this.currentTurn = 0;
     
-    for (let sessionId in this.players) {
+    for (let sessionId in this.players.keys()) {
       let player = this.players.get(sessionId);
       player.numOfSmallPieces = 8;
       player.numOfLargePieces = 0;
