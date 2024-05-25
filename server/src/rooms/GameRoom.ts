@@ -65,7 +65,7 @@ export class GameRoom extends Room<GameState> {
 
     try {
       console.log("waiting for reconnection from :", client.sessionId);
-      await this.allowReconnection(client, 60);
+      await this.allowReconnection(client, 60 * 5);
       console.log("reconnected");
 
       if (replaceOwnerTimeout) replaceOwnerTimeout.clear();

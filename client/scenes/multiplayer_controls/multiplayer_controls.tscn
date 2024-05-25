@@ -7,9 +7,9 @@
 [ext_resource type="LabelSettings" uid="uid://c8sdithnhuqdc" path="res://assets/button_label.tres" id="4_2qxn8"]
 [ext_resource type="Texture2D" uid="uid://bknepcvmv17wf" path="res://assets/ui/PNG/blue_button05.png" id="5_kofuy"]
 [ext_resource type="Texture2D" uid="uid://djeus1x0sodyx" path="res://assets/ui/PNG/blue_button13.png" id="6_demle"]
-[ext_resource type="Texture2D" uid="uid://c6jlx4vx6jkf" path="res://assets/ui/PNG/green_button04.png" id="7_nk1bv"]
+[ext_resource type="Texture2D" uid="uid://cqy1l3frqkw3p" path="res://assets/ui/PNG/blue_button03.png" id="8_ar51w"]
 [ext_resource type="Texture2D" uid="uid://5mdw5vqvh0k7" path="res://assets/ui/PNG/green_button13.png" id="8_eji8q"]
-[ext_resource type="Texture2D" uid="uid://dniqg1ypqlcsg" path="res://assets/ui/PNG/red_button01.png" id="9_y7ldd"]
+[ext_resource type="Texture2D" uid="uid://cftxs1np3qsxb" path="res://assets/ui/PNG/red_button02.png" id="10_by0r4"]
 [ext_resource type="Texture2D" uid="uid://blnahmsuiwned" path="res://assets/ui/PNG/red_button10.png" id="10_jbn2r"]
 [ext_resource type="PackedScene" uid="uid://dw21b7rva1oqd" path="res://scenes/spinner/spinner.tscn" id="12_bjl6l"]
 
@@ -80,7 +80,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_4qah8")
-placeholder_text = "> Player Name"
+placeholder_text = "Enter Player Name"
 alignment = 1
 caret_blink = true
 
@@ -147,10 +147,12 @@ grow_vertical = 2
 
 [node name="RoomId" type="Label" parent="Host"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 0.541176)
 theme_override_fonts/font = ExtResource("2_obd8g")
-theme_override_font_sizes/font_size = 50
-text = "Room Id"
+theme_override_font_sizes/font_size = 40
+text = "Room Id
+
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -176,8 +178,8 @@ theme_override_constants/margin_top = 250
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("2_ug73l")
-texture_pressed = ExtResource("3_rng7c")
+texture_normal = ExtResource("10_by0r4")
+texture_pressed = ExtResource("10_jbn2r")
 stretch_mode = 0
 
 [node name="Leave Room" type="Label" parent="Host/LeaveContainer/Leave"]
@@ -220,19 +222,19 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_4qah8")
-placeholder_text = "> Room Id"
+placeholder_text = "Enter Room Id"
 alignment = 1
 caret_blink = true
 
 [node name="JoinContainer" type="MarginContainer" parent="Join"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_bottom = 20
 
 [node name="Join" type="TextureButton" parent="Join/JoinContainer"]
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("7_nk1bv")
+texture_normal = ExtResource("8_ar51w")
 texture_pressed = ExtResource("8_eji8q")
 stretch_mode = 0
 
@@ -254,14 +256,13 @@ label_settings = ExtResource("4_2qxn8")
 
 [node name="BackContainer" type="MarginContainer" parent="Join"]
 layout_mode = 2
-theme_override_constants/margin_top = 75
 
 [node name="Back" type="TextureButton" parent="Join/BackContainer"]
 custom_minimum_size = Vector2(500, 125)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-texture_normal = ExtResource("9_y7ldd")
+texture_normal = ExtResource("10_by0r4")
 texture_pressed = ExtResource("10_jbn2r")
 stretch_mode = 0
 

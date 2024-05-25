@@ -31,6 +31,8 @@ func connect_to_server(promise) -> bool:
 	room_var.on_leave.on(_on_leave)
 	self.room = room_var
 	
+	ReconnectionInfo.saveToken(room.reconnection_token)
+	
 	return true
 
 func _on_leave():

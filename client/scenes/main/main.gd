@@ -1,10 +1,15 @@
 extends Control
 
 var start_scene = preload("res://scenes/start/start.tscn")
+var reconnect_screen = preload("res://scenes/reconnect/reconnect.tscn")
 var curr_scene
 
 func _ready():
-	_change_scene_to(start_scene)
+	var info = ReconnectionInfo.loadToken()
+	if info:
+		_change_scene_to(reconnect_screen)
+	else:
+		_change_scene_to(start_scene)
 	SignalManager.change_screen_to.connect(_change_scene_to)
 
 
