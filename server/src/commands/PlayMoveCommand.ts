@@ -21,30 +21,28 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
   ];
 
   validate({ sessionId } = this.payload) {
-    console.log("validate play move");
     if(this.state.playState !== GamePlayState.RUNNING)
       return false;
-    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
+    
     var player = this.state.players.get(sessionId);
 
     if(player.idx !== this.state.currentTurn){
       return false;
     }
-    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
+    
     if(this.payload.location < 0 || this.payload.location > this.state.board.length) {
       return false;
     }
-    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
+    
     
     if(this.state.board[this.payload.location] !== PieceType.NO_PIECE) {
       return false;
     }
-    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
+    
     
     if(!this.isValidPiece(player.idx, this.payload.pieceType)){
       return false;
     }
-    console.log("play move", sessionId, this.state.players.get(sessionId).idx, this.state.currentTurn);
     
     return true;
   }
@@ -91,7 +89,7 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
     if(winner !== -1){
       console.log("winner is " + winner);
       this.room.dispatcher.dispatch(new RoundOverCommand(), {
-          sessionId: this.state.indexToSessinId[winner]
+        winnerSessionId: this.state.indexToSessinId[winner]
       });
     }
     

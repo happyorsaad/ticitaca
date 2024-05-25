@@ -1,15 +1,14 @@
+MarginContainer
+GridContainer
 HSeparator
 Label
-GridContainer
 VBoxContainer
 ColorRect
 Control
 Timer
-MarginContainer
 RichTextLabel
 TextureProgressBar
 TextureButton
 Node
 Button
 TextureRect
-Sprite2D

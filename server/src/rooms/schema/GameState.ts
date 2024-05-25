@@ -50,6 +50,8 @@ export class GameState extends Schema {
   @type({ map: Player }) players = new MapSchema<Player>();
   @type(["uint8"]) board = new ArraySchema<number>();
   @type("uint8") playState = GamePlayState.WAITING;
+  @type("int8") lastRoundWinner = -1;
+  
   
   BOARD_SIZE = 6;
   indexToSessinId: any = {};
@@ -60,15 +62,17 @@ export class GameState extends Schema {
   }
 
   resetToNextRound() {
+    console.log("resetting to next round");
     this.playState = GamePlayState.RUNNING;
     this.resetBoard();
     this.currentTurn = 0;
+    this.lastRoundWinner = -1;
     
-    for (let sessionId in this.players.keys()) {
-      let player = this.players.get(sessionId);
-      player.numOfSmallPieces = 8;
+    this.players.forEach((player, sessionId) => {
+      console.log("resetting player: ", player.name);
       player.numOfLargePieces = 0;
-    }
+      player.numOfSmallPieces = 8;
+    });
 
   }
   

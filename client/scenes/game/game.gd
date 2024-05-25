@@ -50,11 +50,13 @@ func _on_refresh_state_timeout():
 	
 func handle_new_state(new_state, new_state_obj, is_polled):
 	if not Utils.is_equal_dict(prev_state_obj, new_state_obj):
+		var current_screen = get_current_screen()		
 		if not prev_state_obj or (prev_state_obj["playState"] != new_state_obj["playState"]):
-			change_game_screen_to(
+			print("new_state", new_state)
+			print("new_state_obj", new_state_obj)
+			current_screen = change_game_screen_to(
 				GAME_SCREENS[new_state.playState]
 			)
-		var current_screen = get_current_screen()
 		if current_screen:
 			current_screen.on_state_update(new_state, is_polled)
 		prev_state_obj = new_state_obj
@@ -92,3 +94,4 @@ func change_game_screen_to(screen):
 		prev.queue_free()
 	var curr = screen.instantiate()
 	state_screen.add_child(curr)
+	return curr

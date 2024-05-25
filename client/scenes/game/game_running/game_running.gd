@@ -112,7 +112,11 @@ func update_opponent_pieces(state):
 		pass
 	var other_player = state.players.at(other_id)
 	update_pieces(opponents_pieces, other_player, false)
-	
+	if not other_player.idx == state.currentTurn:
+		opponents_pieces.modulate.a = 0.3
+	else:
+		opponents_pieces.modulate.a = 1
+		
 func update_board_pieces(state):
 	var board: Array = state.board.to_object()
 	
@@ -137,19 +141,21 @@ func update_player_pieces(state):
 		return
 	var my_player = state.players.at(self.my_id)
 	update_pieces(player_pieces, my_player, true)
-	#disable_if_not_my_turn(my_player, state.currentTurn)
+	disable_if_not_my_turn(my_player, state.currentTurn)
 
-#func disable_if_not_my_turn(my_player, currentTurn):
-	#var mouse_filter_value = Control.MOUSE_FILTER_STOP
-	#print("disable_if_not_my_turn", my_player.idx,currentTurn)
-	#if not my_player.idx == currentTurn:
-		#mouse_filter_value = Control.MOUSE_FILTER_IGNORE
-#
-	#for node in player_pieces.get_children():
-		#node.mouse_filter = mouse_filter_value
-		#for child in node.get_children():
-			#child.mouse_filter = mouse_filter_value
-
+func disable_if_not_my_turn(my_player, currentTurn):
+	var mouse_filter_value = Control.MOUSE_FILTER_STOP
+	if not my_player.idx == currentTurn:
+		mouse_filter_value = Control.MOUSE_FILTER_IGNORE
+		player_pieces.modulate.a = 0.3
+	else:
+		player_pieces.modulate.a = 1
+	
+	for node in player_pieces.get_children():
+		node.mouse_filter = mouse_filter_value
+		for child in node.get_children():
+			child.mouse_filter = mouse_filter_value
+			
 func update_pieces(pieces_ui, player, can_be_dragged):
 	var player_idx = player.idx
 	var small_piece = PIECE_TYPES_FOR_IDX[player_idx]["small"]

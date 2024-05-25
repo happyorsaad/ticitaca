@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7jqd020te0r2"]
+[gd_scene load_steps=5 format=3 uid="uid://b7jqd020te0r2"]
 
 [ext_resource type="Script" path="res://scenes/game/round_over/round_over.gd" id="1_76uxy"]
 [ext_resource type="FontFile" uid="uid://v0dvnefqf7lq" path="res://assets/ui/Font/kenvector_future_thin.ttf" id="2_4nha0"]
+[ext_resource type="PackedScene" uid="uid://blo28ep4j1q8d" path="res://scenes/slot/board_slot.tscn" id="3_4khwo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ey1p"]
 font = ExtResource("2_4nha0")
@@ -18,6 +19,7 @@ grow_vertical = 2
 script = ExtResource("1_76uxy")
 
 [node name="Background" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,11 +42,128 @@ offset_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GameStatus" type="Label" parent="VB"]
+[node name="MarginContainer" type="MarginContainer" parent="VB"]
 layout_mode = 2
-text = "Round Over
+theme_override_constants/margin_bottom = 100
 
-"
+[node name="GameStatus" type="Label" parent="VB/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Woohoo !!
+You Won The Last Round
+Congrats !!"
 label_settings = SubResource("LabelSettings_2ey1p")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Board" type="GridContainer" parent="VB"]
+layout_mode = 2
+columns = 6
+
+[node name="Slot" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot2" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot3" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot4" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot5" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot6" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot7" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot8" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot9" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot10" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot11" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot12" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot13" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot14" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot15" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot16" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot17" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot18" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot19" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot20" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot21" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot22" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot23" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot24" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot25" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot26" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot27" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot28" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot29" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot30" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot31" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot32" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot33" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot34" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot35" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2
+
+[node name="Slot36" parent="VB/Board" instance=ExtResource("3_4khwo")]
+layout_mode = 2

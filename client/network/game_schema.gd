@@ -42,6 +42,7 @@ class GameState extends colyseus.Schema:
 			colyseus.Field.new("players", colyseus.MAP, PlayerState),
 			colyseus.Field.new("board", colyseus.ARRAY, colyseus.UINT8),
 			colyseus.Field.new("playState", colyseus.UINT8),
+			colyseus.Field.new("lastRoundWinner", colyseus.INT8),
 		]
 		
 
