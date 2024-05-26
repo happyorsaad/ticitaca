@@ -43,6 +43,7 @@ func reconnect(schema_type: GDScript, reconnection_token: String) -> Promise:
 	else:
 		var fail = Promise.new()
 		fail.reject("Invalidate `reconnection_token`")
+		print("---- ", "fail")
 		return fail
 
 func get_available_rooms(room_name:String) -> Promise:
@@ -65,10 +66,14 @@ func _create_match_make_request(
 	if options == null:
 		options = {}
 	var http = HTTP.new(server)
+	
 	var req = HTTP.RequestInfo.new("POST", path)
 	req.add_header("Accept", "application/json")
 	req.add_header("Content-Type", "application/json")
 	req.body = options
+	
+	print("createing request at path", path)
+	
 	var resp = http.fetch(req)
 	
 	if resp.get_state() == Promise.State.Waiting:
@@ -78,7 +83,7 @@ func _create_match_make_request(
 		return
 	var res: HTTP.Response = resp.get_data()
 	var response = res.json()
-	
+	print("response : ", response)
 	if response.get('code') != null:
 		promise.reject(response['error'])
 		return
@@ -87,11 +92,11 @@ func _create_match_make_request(
 	room.session_id = response["sessionId"]
 	
 	room.connect_remote(_build_endpoint(response["room"], { "sessionId": room.session_id }))
-	
 	room.on_join.once(Callable(self, "_room_joined"), [promise, room])
 	room.on_error.once(Callable(self, "_room_error"), [promise, room])
 
 func _room_joined(promise: Promise, room: CRoom):
+	print("_room_joined")
 	room.on_error.off(Callable(self, "_room_error"))
 	promise.resolve(room)
 

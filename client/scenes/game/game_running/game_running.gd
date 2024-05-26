@@ -1,8 +1,9 @@
 extends Control
 
 @onready var game_board = $Layout/Board
-@onready var opposition_details = $OpponentDetails
-@onready var player_details = $PlayerDetails
+@onready var opponent_details = $OpponentDetails/details
+@onready var player_details = $PlayerDetails/details
+
 @onready var opponents_pieces = $Layout/OpponentsPieces
 @onready var player_pieces = $Layout/PlayerPieces
 
@@ -98,7 +99,7 @@ func update_player_details(players):
 	var template = "%s\nWins : %d"
 	
 	var opp = players.at(self.other_id)
-	opposition_details.text = template % [
+	opponent_details.text = template % [
 		opp.name, opp.numWins
 	]
 	

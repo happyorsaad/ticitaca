@@ -102,4 +102,9 @@ text = "Quit
 "
 label_settings = ExtResource("3_7gv48")
 
+[node name="Reconnect" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="pressed" from="VB/LeaveContainer/Leave" to="." method="_on_leave_pressed"]
+[connection signal="timeout" from="Reconnect" to="." method="_on_reconnect_timeout"]

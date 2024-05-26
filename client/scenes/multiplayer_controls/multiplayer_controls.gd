@@ -11,6 +11,7 @@ var game_screen = preload("res://scenes/game/game.tscn")
 @onready var start = $Start
 @onready var player_name = $Start/PlayerNameContainer/PlayerName
 @onready var host_game_btn = $Start/HostGame
+@onready var join_game_btn = $Start/JoinGame
 
 # Host Menu
 @onready var host = $Host
@@ -32,6 +33,8 @@ const WAITING_MESSAGE = "Created Room\nPlease share the Room Id With The Other P
 const CONNECTED_TO_ROOM_MESSAGE = "Connected To Room\nWaiting For The Game To Start"
 const EMPTY_MESSAGE = ""
 
+var RandomNames = NameGenerator.new()
+
 func _ready():
 	SignalManager.on_game_state_change.connect(_game_state_change)
 	show_start_game_view()
@@ -41,14 +44,16 @@ func _game_state_change(state):
 		SignalManager.change_screen_to.emit(game_screen)
 	
 func _on_host_game_pressed():
-	host_game_btn.disabled = true
+	toggle_button(host_game_btn, true)
+	toggle_button(join_game_btn, true)
 	
 	var name = _get_player_name()
 	var ip = server_ip.text.strip_edges()
 	show_spinner()
 	var result = await Client.join_or_create({"name": name}, ip)
 	
-	host_game_btn.disabled = false	
+	toggle_button(host_game_btn, false)
+	toggle_button(join_game_btn, false)
 	
 	if not result:
 		show_message(HOST_ERROR_MESSAGE)
@@ -88,7 +93,7 @@ func _get_player_name():
 	if name and !name.is_empty():
 		return name
 	else:
-		return "P"
+		return RandomNames.new_name()[2]
 
 func hide_all():
 	start.visible = false
@@ -102,7 +107,7 @@ func _on_leave_pressed():
 func _on_join_room_pressed():
 	show_spinner()
 	
-	join_room_btn.disabled = true
+	toggle_button(join_room_btn, true)
 	
 	var name = _get_player_name()
 	var room_id = room_id_input.text.strip_edges()
@@ -111,13 +116,21 @@ func _on_join_room_pressed():
 		"name": name
 	},ip)
 	
-	join_room_btn.disabled = false
+	toggle_button(join_room_btn, false)
 	
 	if not result:
 		show_message(JOIN_ERROR_MESSAGE)
 	else:
 		show_message(CONNECTED_TO_ROOM_MESSAGE)
-	
+
+func toggle_button(button, to_disable: bool):
+	if to_disable:
+		button.disabled = true
+		button.modulate.a = 0.7
+	else:
+		button.disabled = false
+		button.modulate.a = 1
+
 func _on_back_pressed():
 	show_start_game_view()
 

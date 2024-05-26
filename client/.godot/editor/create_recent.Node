@@ -1,11 +1,11 @@
-VBoxContainer
-ColorRect
-Control
-MarginContainer
-GridContainer
-HSeparator
 Label
+VBoxContainer
+GridContainer
+ColorRect
 Timer
+MarginContainer
+Control
+HSeparator
 RichTextLabel
 TextureProgressBar
 TextureButton

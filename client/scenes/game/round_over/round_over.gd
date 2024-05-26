@@ -1,7 +1,7 @@
 extends Control
 
 @onready var game_board = $VB/Board
-@onready var game_status = $VB/GameStatus
+@onready var game_status = $VB/MarginContainer/GameStatus
 
 const PIECE = preload("res://scenes/piece/piece.tscn")
 const SLOT = preload("res://scenes/slot/board_slot.tscn")

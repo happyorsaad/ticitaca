@@ -31,7 +31,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_colyseus/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_colyseus/plugin.cfg", "res://addons/randomnamesgenerator/plugin.cfg")
 
 [rendering]
 

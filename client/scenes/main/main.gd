@@ -5,13 +5,8 @@ var reconnect_screen = preload("res://scenes/reconnect/reconnect.tscn")
 var curr_scene
 
 func _ready():
-	var info = ReconnectionInfo.loadToken()
-	if info:
-		_change_scene_to(reconnect_screen)
-	else:
-		_change_scene_to(start_scene)
+	_change_scene_to(start_scene)
 	SignalManager.change_screen_to.connect(_change_scene_to)
-
 
 func _change_scene_to(scene: PackedScene):
 	if curr_scene:

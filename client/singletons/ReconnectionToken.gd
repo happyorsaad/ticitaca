@@ -2,5 +2,5 @@ extends Resource
 
 class_name ReconnectionToken
 
-@export var timestamp: float
+@export var timestamp: String
 @export var reconnection_token: String

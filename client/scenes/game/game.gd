@@ -9,7 +9,8 @@ const connection_lost = preload("res://scenes/connection_lost/connection_lost.ts
 ## Game Screens
 const game_running = preload("res://scenes/game/game_running/game_running.tscn")
 const round_over = preload("res://scenes/game/round_over/round_over.tscn")
-
+const round_over_screen = preload("res://scenes/game/waiting/game_waiting.tscn")
+const player_choosing_small_piece_to_upgrade = preload("res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.tscn")
 # Schema
 const Schema = preload("res://network/game_schema.gd")
 const GamePlayState = Schema.GamePlayState
@@ -19,13 +20,16 @@ var prev_state_obj
 
 const GAME_SCREENS = {
 	GamePlayState.RUNNING : game_running,
-	GamePlayState.ROUND_OVER : round_over
+	GamePlayState.ROUND_OVER : round_over,
+	GamePlayState.WAITING: round_over_screen,
+	GamePlayState.PLAYER_CHOOSING_SMALL_PIECE_TO_UPGRADE: player_choosing_small_piece_to_upgrade
 }
 
 func _ready():
 	SignalManager.on_message_received.connect(_on_message_received)
 	SignalManager.on_game_state_change.connect(_on_state_changed)
 	SignalManager.on_connection_dropped.connect(_on_connection_lost)
+	ReconnectionInfo.saveToken(Client.room.reconnection_token)
 	
 func _on_connection_lost():
 	SignalManager.change_screen_to.emit(connection_lost)
@@ -50,15 +54,15 @@ func _on_refresh_state_timeout():
 	
 func handle_new_state(new_state, new_state_obj, is_polled):
 	if not Utils.is_equal_dict(prev_state_obj, new_state_obj):
-		var current_screen = get_current_screen()		
+		var current_scene = get_current_screen()		
 		if not prev_state_obj or (prev_state_obj["playState"] != new_state_obj["playState"]):
 			print("new_state", new_state)
 			print("new_state_obj", new_state_obj)
-			current_screen = change_game_screen_to(
+			current_scene = change_game_screen_to(
 				GAME_SCREENS[new_state.playState]
 			)
-		if current_screen:
-			current_screen.on_state_update(new_state, is_polled)
+		if current_scene and current_scene.has_method("on_state_update"):
+			current_scene.on_state_update(new_state, is_polled)
 		prev_state_obj = new_state_obj
 		
 func update_is_connected(state):

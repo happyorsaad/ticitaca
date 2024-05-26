@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://parkahruciqb"]
+[gd_scene load_steps=7 format=3 uid="uid://parkahruciqb"]
 
 [ext_resource type="Script" path="res://scenes/game/game_running/game_running.gd" id="1_ykyi5"]
-[ext_resource type="PackedScene" uid="uid://bhjw0t24ya703" path="res://scenes/piece/piece.tscn" id="2_5s1xv"]
 [ext_resource type="PackedScene" uid="uid://blo28ep4j1q8d" path="res://scenes/slot/board_slot.tscn" id="3_3jnpu"]
+[ext_resource type="FontFile" uid="uid://dmrypje281jnn" path="res://assets/ui/Font/kenvector_future.ttf" id="3_v3crt"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_re7e3"]
 thickness = 2
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_v3o7o"]
 thickness = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_2lai3"]
+font = ExtResource("3_v3crt")
+font_size = 35
+font_color = Color(0, 0, 0, 1)
 
 [node name="GameRunning" type="Control"]
 layout_mode = 3
@@ -45,18 +50,6 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 4
 columns = 4
-
-[node name="Piece" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
-
-[node name="Piece2" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
-
-[node name="Piece3" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
-
-[node name="Piece4" parent="Layout/OpponentsPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
 
 [node name="OpponentSeperator" type="HSeparator" parent="Layout"]
 modulate = Color(0, 0, 0, 1)
@@ -187,32 +180,39 @@ layout_mode = 2
 size_flags_horizontal = 4
 columns = 4
 
-[node name="Piece" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
-
-[node name="Piece2" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
-
-[node name="Piece3" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
-
-[node name="Piece4" parent="Layout/PlayerPieces" instance=ExtResource("2_5s1xv")]
-layout_mode = 2
-
-[node name="OpponentDetails" type="Label" parent="."]
+[node name="OpponentDetails" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
+offset_left = -305.0
+offset_bottom = 113.0
 grow_horizontal = 0
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
 
-[node name="PlayerDetails" type="Label" parent="."]
+[node name="details" type="Label" parent="OpponentDetails"]
+layout_mode = 2
+text = "Playet Name
+Wins:"
+label_settings = SubResource("LabelSettings_2lai3")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PlayerDetails" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
+offset_top = -113.0
+offset_right = 305.0
 grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="details" type="Label" parent="PlayerDetails"]
+layout_mode = 2
+text = "Player Name
+Wins:"
+label_settings = SubResource("LabelSettings_2lai3")
+vertical_alignment = 1

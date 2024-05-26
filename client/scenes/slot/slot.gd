@@ -15,9 +15,12 @@ func _get_is_empty() -> bool:
 	
 var slot_idx = -1 
 
+var can_be_clicked
+
 func _ready():
 	custom_minimum_size = Vector2(min_size, min_size)
-
+	self.can_be_clicked = false
+	
 func reset_slot():
 	self.slot_idx = -1
 	for child in self.get_children():
@@ -52,9 +55,11 @@ func _on_mouse_exited():
 	queue_redraw()
 
 func _on_gui_input(event):
+	if not can_be_clicked:
+		return
+		
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_double_click():
-		#SignalManager.on_piece_dropped.emit(slot_idx, 0)
-		pass
+		SignalManager.on_slot_doubleclicked.emit(slot_idx)
 		
 func _can_drop_data(at_position, data):
 	return is_empty

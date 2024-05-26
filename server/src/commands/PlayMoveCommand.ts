@@ -55,19 +55,23 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
   }
 
   execute({ sessionId, pieceType, location } = this.payload) {
-    this.playMove(sessionId, pieceType, location);  
-  }
-
-  playMove(sessionId: string, pieceType: number, location: number){
     this.room.broadcast("player_move", { 
       "playerIdx" : this.state.players.get(sessionId).idx,
       "pieceType" : pieceType,
       "location" : location
     });
+    this.clock.setTimeout(() => {
+      this.playMove(sessionId, pieceType, location);
+    }, 1_500);
+  }
+
+  playMove(sessionId: string, pieceType: number, location: number){
     console.log("play move", sessionId, pieceType, location)
     this.state.board[location] = pieceType;
     this.boop(location, pieceType);
-    this.state.currentTurn = this.state.currentTurn === 0 ? 1 : 0;
+    if(this.state.playState == GamePlayState.RUNNING) {
+      this.state.currentTurn = this.state.currentTurn === 0 ? 1 : 0;
+    }
   }
 
   private boop(location: number, pieceType: number){
@@ -75,8 +79,6 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
     this.decreasePieceCounts(pieceType);
     
     this.copyBoardTo2d();
-    
-    console.log(this.board2d);
     
     this.moveDirections.forEach((direction: any) => {
       this.boopInDirection(location, pieceType, direction);
@@ -139,41 +141,49 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
              && match["pieces"][1] === match["pieces"][2] 
              && (
                   match["pieces"][0] === PieceType.SMALL_0 || match["pieces"][0] === PieceType.SMALL_1
-            );
+                );
     });
 
+    console.log("smallPieceMatches", smallPieceMatches);
     if(smallPieceMatches.length === 0){
       return;
     }
 
-    if(smallPieceMatches.length === 1){
-      if(smallPieceMatches[0]["pieces"][0] === PieceType.SMALL_0){
-        this.state.players.get(this.state.indexToSessinId[0]).numOfLargePieces += 3;
-        smallPieceMatches[0]["locations"].forEach((location: any) => {
-          this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
-        });
-      } else if(smallPieceMatches[0]["pieces"][0] === PieceType.SMALL_1){
-        this.state.players.get(this.state.indexToSessinId[1]).numOfLargePieces += 3;
-        smallPieceMatches[0]["locations"].forEach((location: any) => {
-          this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
-        });
-      }
-
-      return;
+    let idxToReplace = smallPieceMatches[0]
+    if(smallPieceMatches.length > 1){
+      idxToReplace = smallPieceMatches[Math.floor(Math.random() * smallPieceMatches.length)];
     }
 
+    if(idxToReplace["pieces"][0] === PieceType.SMALL_0){
+      this.state.players.get(this.state.indexToSessinId[0]).numOfLargePieces += 3;
+      idxToReplace["locations"].forEach((location: any) => {
+        this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
+      });
+    } else if(idxToReplace["pieces"][0] === PieceType.SMALL_1){
+      this.state.players.get(this.state.indexToSessinId[1]).numOfLargePieces += 3;
+      idxToReplace["locations"].forEach((location: any) => {
+        this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
+      });
+    }
+
+    return;
+    
+
+    // TODO: implement this
+    /*
     this.room.dispatcher.dispatch(new ChooseSmallPieceRowCommand(), {
       sessionId: this.state.indexToSessinId[this.state.currentTurn],
       matches: smallPieceMatches
     });
+    */
   }  
 
   private checkWinner(matches: any[], board2d: number[][]){
     // check if all large pieces have been placed on board
-    if(this.state.players.get(this.state.indexToSessinId[this.state.currentTurn]).numOfLargePieces === 0){
-      if(this.state.players.get(this.state.indexToSessinId[this.state.currentTurn]).numOfSmallPieces === 0)
-        return this.state.currentTurn;
-    }
+    // if(this.state.players.get(this.state.indexToSessinId[this.state.currentTurn]).numOfLargePieces === 0){
+    //   if(this.state.players.get(this.state.indexToSessinId[this.state.currentTurn]).numOfSmallPieces === 0)
+    //     return this.state.currentTurn;
+    // }
 
     // check if there are three large pieces in a row, column or diagonal
     var winners: Array<number> = [];

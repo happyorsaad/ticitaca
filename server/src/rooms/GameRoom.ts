@@ -6,6 +6,7 @@ import { OnConsentedLeaveCommand } from "../commands/OnConsentedLeaveCommand";
 import { ReconnectPlayerCommand } from "../commands/ReconnectPlayerCommand";
 import { NewOwnerCommand } from "../commands/NewOwnerCommand";
 import { PlayMoveCommand } from "../commands/PlayMoveCommand";
+import { ShortPieceSelectedCommand } from "../commands/ShortPieceSelectedCommand";
 
 export class GameRoom extends Room<GameState> {
   private MAX_PLAYERS: number = 2;
@@ -25,8 +26,15 @@ export class GameRoom extends Room<GameState> {
         pieceType: message.pieceType,
         location: message.location,
       });
-    }
-    );
+    });
+
+    this.onMessage("short_piece_selected", (client, message) => {
+      console.log("SHORT_PIECE_SELECTED", message);
+      this.dispatcher.dispatch(new ShortPieceSelectedCommand(), {
+        sessionId: client.sessionId,
+        idx: message.location,
+      });
+    });
   }
 
   onJoin (client: Client, options: any) {
@@ -72,7 +80,8 @@ export class GameRoom extends Room<GameState> {
       this.dispatcher.dispatch(new ReconnectPlayerCommand(), {
         sessionId: client.sessionId,
       });
-    } catch {
+    } catch(e) {
+      console.log("disconnected");
       player.hasLeft = true;
     }
   }
