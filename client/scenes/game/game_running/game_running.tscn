@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://parkahruciqb"]
+[gd_scene load_steps=8 format=3 uid="uid://parkahruciqb"]
 
 [ext_resource type="Script" path="res://scenes/game/game_running/game_running.gd" id="1_ykyi5"]
 [ext_resource type="PackedScene" uid="uid://blo28ep4j1q8d" path="res://scenes/slot/board_slot.tscn" id="3_3jnpu"]
 [ext_resource type="FontFile" uid="uid://dmrypje281jnn" path="res://assets/ui/Font/kenvector_future.ttf" id="3_v3crt"]
+[ext_resource type="AudioStream" uid="uid://c0gqhvh5attsu" path="res://assets/sounds/place.wav" id="4_n1f77"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_re7e3"]
 thickness = 2
@@ -216,3 +217,6 @@ text = "Player Name
 Wins:"
 label_settings = SubResource("LabelSettings_2lai3")
 vertical_alignment = 1
+
+[node name="place_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n1f77")

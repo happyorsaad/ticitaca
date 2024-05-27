@@ -16,3 +16,9 @@ res://scenes/game/round_over/round_over.gd
 res://network/game_schema.gd
 res://addons/godot_colyseus/lib/client.gd
 res://addons/godot_colyseus/lib/http.gd
+res://scenes/game/game.tscn
+res://scenes/player_disconnected/player_disconnected.tscn
+res://singletons/ReconnectionInfo.gd
+res://singletons/sound_manager.gd
+res://scenes/game/game_running/game_running.gd
+res://scenes/main/main.gd

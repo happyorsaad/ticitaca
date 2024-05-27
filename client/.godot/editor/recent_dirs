@@ -1,5 +1,6 @@
-/Users/syhussai/games/Boom/client/game_site
 res://singletons
+/Users/syhussai/games/Boom/client/game_site/public
+/Users/syhussai/games/Boom/client/game_site
 res://scenes/connection_lost
 res://scenes/spinner
 res://assets/ui/Font

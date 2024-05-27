@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmbkm1blbug6b"]
+[gd_scene load_steps=3 format=3 uid="uid://dmbkm1blbug6b"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_6adug"]
+[ext_resource type="AudioStream" uid="uid://cxrfge05tbsfl" path="res://assets/sounds/music.mp3" id="2_1ncg8"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -18,3 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_1ncg8")
+volume_db = -9.687
+autoplay = true

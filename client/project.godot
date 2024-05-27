@@ -21,6 +21,7 @@ ReconnectionInfo="*res://singletons/ReconnectionInfo.gd"
 SignalManager="*res://singletons/signal_manager.gd"
 Client="*res://network/colyseus_client.gd"
 GameManager="*res://singletons/game_manager.gd"
+SoundManager="*res://addons/sound_manager/sound_manager.gd"
 Utils="*res://singletons/utils.gd"
 
 [display]
@@ -31,7 +32,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_colyseus/plugin.cfg", "res://addons/randomnamesgenerator/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_colyseus/plugin.cfg", "res://addons/randomnamesgenerator/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
 
 [rendering]
 

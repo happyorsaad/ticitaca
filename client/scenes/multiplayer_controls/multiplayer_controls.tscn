@@ -52,6 +52,7 @@ size_flags_vertical = 4
 theme_override_constants/separation = 30
 
 [node name="ServerIP" type="MarginContainer" parent="Start"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_bottom = 100
 
@@ -63,7 +64,7 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_4qah8")
-text = "ws://localhost:2567"
+text = "https://ticitaca-server.up.railway.app"
 placeholder_text = "> Server IP"
 alignment = 1
 caret_blink = true

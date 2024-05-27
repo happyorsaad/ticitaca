@@ -22,17 +22,22 @@ const GAME_SCREENS = {
 	GamePlayState.RUNNING : game_running,
 	GamePlayState.ROUND_OVER : round_over,
 	GamePlayState.WAITING: round_over_screen,
-	GamePlayState.PLAYER_CHOOSING_SMALL_PIECE_TO_UPGRADE: player_choosing_small_piece_to_upgrade
+	GamePlayState.PLAYER_CHOOSING_SMALL_PIECE_TO_UPGRADE: player_choosing_small_piece_to_upgrade,
+	GamePlayState.PLAYER_DISCONNECTED: player_disconnected
 }
 
 func _ready():
 	SignalManager.on_message_received.connect(_on_message_received)
 	SignalManager.on_game_state_change.connect(_on_state_changed)
 	SignalManager.on_connection_dropped.connect(_on_connection_lost)
+	SignalManager.on_reconnection.connect(_on_state_changed)
+	
 	ReconnectionInfo.saveToken(Client.room.reconnection_token)
 	
 func _on_connection_lost():
-	SignalManager.change_screen_to.emit(connection_lost)
+	change_game_screen_to(
+		connection_lost	
+	)
 
 func _on_state_changed(new_state):
 	if not new_state:
@@ -53,6 +58,9 @@ func _on_refresh_state_timeout():
 	handle_new_state(new_state, new_state_obj, true)
 	
 func handle_new_state(new_state, new_state_obj, is_polled):
+	if not check_is_connected(new_state):
+		new_state.playState = GamePlayState.PLAYER_DISCONNECTED
+	
 	if not Utils.is_equal_dict(prev_state_obj, new_state_obj):
 		var current_scene = get_current_screen()		
 		if not prev_state_obj or (prev_state_obj["playState"] != new_state_obj["playState"]):
@@ -65,9 +73,10 @@ func handle_new_state(new_state, new_state_obj, is_polled):
 			current_scene.on_state_update(new_state, is_polled)
 		prev_state_obj = new_state_obj
 		
-func update_is_connected(state):
+func check_is_connected(state):
 	if has_only_one_player(state) or other_player_has_disconnected(state):
-		SignalManager.change_screen_to.emit(player_disconnected)
+		return false
+	return true
 	
 func has_only_one_player(state):
 	if not state.players:
@@ -76,16 +85,17 @@ func has_only_one_player(state):
 	if state.playState == GamePlayState.WAITING:
 		return false
 		
-	if state.players.size() == 1:
+	if state.players.keys().size() == 1:
 		return true
 
 func other_player_has_disconnected(state):
 	if not state.players:
 		return false
 	
-	for key in state.players:
-		print(key)
-	
+	for key in state.players.keys():
+		if key != Client.get_client_id() and not state.players.at(key).isConnected:
+			return true
+			
 	return false
 	
 func get_current_screen():

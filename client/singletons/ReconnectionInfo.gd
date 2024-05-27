@@ -27,7 +27,8 @@ func loadToken() -> ReconnectionToken:
 			
 			if not token.reconnection_token:
 				return null
+			
 			if Time.get_unix_time_from_system() - float(token.timestamp) <= TIME_VALID: 
-				print(token)
+				print(token.reconnection_token)
 				return token
 	return null

@@ -6,6 +6,7 @@ extends Control
 
 @onready var opponents_pieces = $Layout/OpponentsPieces
 @onready var player_pieces = $Layout/PlayerPieces
+@onready var place_sound = $place_sound
 
 const PIECE = preload("res://scenes/piece/piece.tscn")
 const SLOT = preload("res://scenes/slot/board_slot.tscn")
@@ -68,6 +69,9 @@ func add_piece_to_slot(idx, type):
 	slot.add_child(piece)
 	
 func _on_piece_dropped_in_slot(idx, type):
+	place_sound.stop()
+	place_sound.play()
+	
 	add_piece_to_slot(idx, type)
 	boop(idx, type)
 	disable_player_pieces()
