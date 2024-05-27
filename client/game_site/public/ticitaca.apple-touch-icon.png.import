@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcxgfjptxt7st"
-path="res://.godot/imported/ticitaca.apple-touch-icon.png-ac519e1541c920bd37741a51b8ddaa75.ctex"
+path="res://.godot/imported/ticitaca.apple-touch-icon.png-cb76ff7e9698317433de2a13bae5b1c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_site/ticitaca.apple-touch-icon.png"
-dest_files=["res://.godot/imported/ticitaca.apple-touch-icon.png-ac519e1541c920bd37741a51b8ddaa75.ctex"]
+source_file="res://game_site/public/ticitaca.apple-touch-icon.png"
+dest_files=["res://.godot/imported/ticitaca.apple-touch-icon.png-cb76ff7e9698317433de2a13bae5b1c8.ctex"]
 
 [params]
 
