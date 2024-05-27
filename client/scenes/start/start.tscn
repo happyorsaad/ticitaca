@@ -8,10 +8,10 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_0oe87"]
 font = ExtResource("1_0yj4h")
-font_size = 175
+font_size = 180
 font_color = Color(0, 0, 0, 1)
 shadow_size = 5
-shadow_color = Color(0.0361009, 0.0361009, 0.0361009, 0)
+shadow_color = Color(0.323584, 0.323584, 0.323584, 0)
 
 [node name="start" type="CanvasLayer"]
 script = ExtResource("1_7iypk")
@@ -40,7 +40,7 @@ grow_vertical = 2
 [node name="Game Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Tici
-Taka"
+Taca"
 label_settings = SubResource("LabelSettings_0oe87")
 horizontal_alignment = 1
 vertical_alignment = 1
