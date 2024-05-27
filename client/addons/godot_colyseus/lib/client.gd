@@ -67,26 +67,33 @@ func _create_match_make_request(
 		options = {}
 	var http = HTTP.new(server)
 	
+	print("http : ", http, server)
 	var req = HTTP.RequestInfo.new("POST", path)
 	req.add_header("Accept", "application/json")
 	req.add_header("Content-Type", "application/json")
 	req.body = options
-	
-	print("createing request at path", path)
+	print("req: ", req)
+	print("creating request at path - ", path)
+	print("options", options)
 	
 	var resp = http.fetch(req)
-	
+	print(resp)
 	if resp.get_state() == Promise.State.Waiting:
 		await resp.completed
 	if resp.get_state() == Promise.State.Failed:
 		promise.reject(resp.get_error())
 		return
+	
 	var res: HTTP.Response = resp.get_data()
+	print(res)
+	
 	var response = res.json()
 	print("response : ", response)
+	
 	if response.get('code') != null:
 		promise.reject(response['error'])
 		return
+	
 	var room = CRoom.new(response["room"]["name"], schema_type)
 	room.room_id = response["room"]["roomId"]
 	room.session_id = response["sessionId"]

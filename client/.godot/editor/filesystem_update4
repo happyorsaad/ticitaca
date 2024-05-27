@@ -14,3 +14,5 @@ res://singletons/signal_manager.gd
 res://scenes/slot/slot.gd
 res://scenes/game/round_over/round_over.gd
 res://network/game_schema.gd
+res://addons/godot_colyseus/lib/client.gd
+res://addons/godot_colyseus/lib/http.gd

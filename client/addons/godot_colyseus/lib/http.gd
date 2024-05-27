@@ -107,7 +107,9 @@ func _init(server: String):
 
 func _setup(promise: promises.Promise, host, port, ssl):
 	var client = HTTPClient.new()
-	var error = client.connect_to_host(host, port, null)
+	print("host : ", host, " ", port, " ", ssl)
+	var error = client.connect_to_host("https://" + host, port, null)
+	print("error",  error)
 	if error != OK:
 		promise.reject(str("ErrorCode: ", error))
 	var root = Engine.get_main_loop()
@@ -115,7 +117,7 @@ func _setup(promise: promises.Promise, host, port, ssl):
 		await root.process_frame
 		client.poll()
 		var status = client.get_status()
-		
+		print("status : ", status)
 		match status:
 			HTTPClient.STATUS_CONNECTED:
 				promise.resolve(client)
@@ -166,6 +168,7 @@ func _request(promise: Promise, request: RequestInfo):
 				promise.reject("Connection Error")
 				return
 			HTTPClient.STATUS_BODY:
+				print(client.get_response_code())
 				if not response._has_response:
 					response._has_response = true
 					response._status_code = client.get_response_code()
