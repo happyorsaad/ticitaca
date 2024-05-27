@@ -1,6 +1,6 @@
 extends Node
 
-const SERVER_URL = "ws://localhost:2567"
+const SERVER_URL = "https://ticitaca-server.up.railway.app"
 const colyseus = preload("res://addons/godot_colyseus/lib/colyseus.gd")
 const schema = preload("res://network/game_schema.gd")
 
@@ -12,17 +12,17 @@ func get_client(ip):
 		client = colyseus.Client.new(ip)
 	return client
 	
-func join_or_create(options = null, ip = "ws://localhost:2567") -> bool:
+func join_or_create(options = null, ip = SERVER_URL) -> bool:
 	var client = get_client(ip)
 	var promise = client.join_or_create(schema.GameState, "game_room", options)
 	return await connect_to_server(promise)
 	
-func join_room(room_id, options = null, ip = "ws://localhost:2567") -> bool:
+func join_room(room_id, options = null, ip = SERVER_URL) -> bool:
 	var client = get_client(ip)
 	var promise = client.join_by_id(schema.GameState, room_id, options)
 	return await connect_to_server(promise)
 
-func reconnect_to_room(reconnection_token, ip = "ws://localhost:2567"):
+func reconnect_to_room(reconnection_token, ip = SERVER_URL):
 	var client = get_client(ip)
 	var promise = client.reconnect(schema.GameState, reconnection_token)
 	return await connect_to_server(promise)

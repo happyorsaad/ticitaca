@@ -12,7 +12,7 @@ res://scenes/game/round_over/round_over.tscn::fac180c869464b72d2f2ca16b455f482::
 res://scenes/game/waiting/game_waiting.tscn::827ac2a83d625937e40e8fc08e0f8635::1716813270::res://.godot/exported/133200997/export-04ffc956d6fce5266b16dd9b30c0addf-game_waiting.scn
 res://scenes/game/game.tscn::12c8d7033b0ad088ab1f01ad6dae4719::1716813270::res://.godot/exported/133200997/export-69e963a49695dd4030e5c61a12b8ddfe-game.scn
 res://scenes/main/main.tscn::1d7fb0a9ad602dc195ba4b10de58daf6::1716813383::res://.godot/exported/133200997/export-f39996a6d27a38698d16421ab974097b-main.scn
-res://scenes/multiplayer_controls/multiplayer_controls.tscn::e1bb63e00dcbaeacefe9995f6022d518::1716813270::res://.godot/exported/133200997/export-788e0108d4c1fdfd401b3bc5aa76f134-multiplayer_controls.scn
+res://scenes/multiplayer_controls/multiplayer_controls.tscn::e1bb63e00dcbaeacefe9995f6022d518::1716814105::res://.godot/exported/133200997/export-788e0108d4c1fdfd401b3bc5aa76f134-multiplayer_controls.scn
 res://scenes/piece/piece.tscn::a39547a859e99c253365b3dd0e1b03a9::1716813270::res://.godot/exported/133200997/export-926caad7e3ffb92154580fd4bcc0a824-piece.scn
 res://scenes/player_disconnected/player_disconnected.tscn::323a153b7fbbca7bcadb62f7a98525b2::1716813270::res://.godot/exported/133200997/export-e4f5b2d9baba788fa04e4dd4a224e950-player_disconnected.scn
 res://scenes/reconnect/reconnect.tscn::7c3cef4b45ffc4651616bbf106fe2f64::1716813270::res://.godot/exported/133200997/export-923ba30807705e51af9b544d47dd6226-reconnect.scn
