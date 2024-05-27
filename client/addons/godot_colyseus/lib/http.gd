@@ -103,12 +103,12 @@ func _init(server: String):
 	var port = -1
 	if portstr != "":
 		port = int(portstr)
-	_client_promise = promises.RunPromise.new(Callable(self, "_setup"), [host, port, ssl]);
+	_client_promise = promises.RunPromise.new(Callable(self, "_setup"), [scheme + "://" + host, port, ssl]);
 
 func _setup(promise: promises.Promise, host, port, ssl):
 	var client = HTTPClient.new()
 	print("host : ", host, " ", port, " ", ssl)
-	var error = client.connect_to_host("https://" + host, port, null)
+	var error = client.connect_to_host(host, port, null)
 	print("error",  error)
 	if error != OK:
 		promise.reject(str("ErrorCode: ", error))

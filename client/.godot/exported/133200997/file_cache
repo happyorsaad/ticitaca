@@ -1,0 +1,23 @@
+res://addons/godot_colyseus/demo/char.tscn::fb0c3ec31765ff0435c3ec7905b35829::1715590258::res://.godot/exported/133200997/export-ff5251cf2f2d38b03395f0aa3cb49b22-char.scn
+res://addons/godot_colyseus/demo/chat.tscn::db4b993663c3b75eacdc01e1e32ccfaf::1715590258::res://.godot/exported/133200997/export-c8568ab88ef6d2bcabd1aaa6d5eb603b-chat.scn
+res://addons/godot_colyseus/demo/control.tscn::5f7cfcd8af9ba75ec1113db97c6ec681::1715590258::res://.godot/exported/133200997/export-6911aca9ea3054fb96bc2bb7e5404737-control.scn
+res://addons/godot_colyseus/demo/main.tscn::37809dc80eea8a9f9235aaa9271f01e8::1715590258::res://.godot/exported/133200997/export-5d60ecc18a4e1a3c0200443db0543c5c-main.scn
+res://addons/randomnamesgenerator/v_box_container.tscn::c4d420c29bf8dab28d1d4803e4cdd330::1716647808::res://.godot/exported/133200997/export-1b8ad9011c39f35ad7db4ce4a8b09dac-v_box_container.scn
+res://assets/button_label.tres::8a8cd4e57dc244e0ebd9750a1f73c794::1715958675::res://.godot/exported/133200997/export-10c9a04bcd023cf8a3357aabbf0104e6-button_label.res
+res://network/ client.tscn::a3b9000662fd83787a11586af19ba19a::1716311495::res://.godot/exported/133200997/export-1ce95ab2ff5922fb59c792442ba03e8a- client.scn
+res://scenes/connection_lost/connection_lost.tscn::79cfc9553dfc6dd5a5d1de523100e0f8::1716717313::res://.godot/exported/133200997/export-82085b60928dc37f6c4f8787992be6dc-connection_lost.scn
+res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.tscn::f22a2f98ec00f867fb4099dbd38a9b76::1716794824::res://.godot/exported/133200997/export-ee2cd3acb68d446b33a8cda8cd18d5e0-choose_piece_to_upgrade.scn
+res://scenes/game/game_running/game_running.tscn::cef1d2778d9a88ffcd9f613df321c583::1716794824::res://.godot/exported/133200997/export-e125ff1596215901d6ecc9c7fa6ebdab-game_running.scn
+res://scenes/game/round_over/round_over.tscn::fac180c869464b72d2f2ca16b455f482::1716794824::res://.godot/exported/133200997/export-05ab3a7588c43c595c5dc6e8961fe4fb-round_over.scn
+res://scenes/game/waiting/game_waiting.tscn::827ac2a83d625937e40e8fc08e0f8635::1716794824::res://.godot/exported/133200997/export-04ffc956d6fce5266b16dd9b30c0addf-game_waiting.scn
+res://scenes/game/game.tscn::12c8d7033b0ad088ab1f01ad6dae4719::1716671128::res://.godot/exported/133200997/export-69e963a49695dd4030e5c61a12b8ddfe-game.scn
+res://scenes/main/main.tscn::a80b40e2796144faff6d0fd728522aac::1716794824::res://.godot/exported/133200997/export-f39996a6d27a38698d16421ab974097b-main.scn
+res://scenes/multiplayer_controls/multiplayer_controls.tscn::a76a2b7a96e8d3996fc12427bcc23e98::1716794824::res://.godot/exported/133200997/export-788e0108d4c1fdfd401b3bc5aa76f134-multiplayer_controls.scn
+res://scenes/piece/piece.tscn::a39547a859e99c253365b3dd0e1b03a9::1716794824::res://.godot/exported/133200997/export-926caad7e3ffb92154580fd4bcc0a824-piece.scn
+res://scenes/player_disconnected/player_disconnected.tscn::323a153b7fbbca7bcadb62f7a98525b2::1716527272::res://.godot/exported/133200997/export-e4f5b2d9baba788fa04e4dd4a224e950-player_disconnected.scn
+res://scenes/reconnect/reconnect.tscn::7c3cef4b45ffc4651616bbf106fe2f64::1716794824::res://.godot/exported/133200997/export-923ba30807705e51af9b544d47dd6226-reconnect.scn
+res://scenes/slot/board_slot.tscn::abb6180e62827274ecbab05fd5319ec8::1716235081::res://.godot/exported/133200997/export-94b1b5b0e69b8c4bf2b1a0b564172bf9-board_slot.scn
+res://scenes/spinner/spinner.tscn::b766a41da5fa754d11e9897b28e777dd::1716235081::res://.godot/exported/133200997/export-f1e56af419b753ea7f19f3219f3a4986-spinner.scn
+res://scenes/start/start.tscn::01d44fe86fafd37a947c42f2b0a6f281::1716794824::res://.godot/exported/133200997/export-2108cf5763fed14f2bca423eeb69d126-start.scn
+res://default_env.tres::a52129f071fffbd20a6013a6c0edec1e::1715590258::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
+res://game_manager.tscn::311639186898ce3c7a41bf23937d26d3::1715972097::res://.godot/exported/133200997/export-bd5ff995e4b5bf3753a213b334e1b8c4-game_manager.scn
