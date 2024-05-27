@@ -5,7 +5,7 @@ class_name Piece
 const Schema = preload("res://network/game_schema.gd")
 const PieceType = Schema.PieceType
 
-var piece_type = PieceType.SMALL_0
+@export var piece_type = PieceType.SMALL_0
 var min_size = 128
 var can_be_dragged = true
 
@@ -14,8 +14,8 @@ var large_size = min_size * 0.75
 
 const PIECE_COLOR = {
 	PieceType.SMALL_0 : Color.GREEN_YELLOW,
-	PieceType.LARGE_0 : Color.SEA_GREEN,
-	PieceType.SMALL_1 : Color.SKY_BLUE,
+	PieceType.LARGE_0 : Color.YELLOW_GREEN,
+	PieceType.SMALL_1 : Color.LIGHT_SKY_BLUE,
 	PieceType.LARGE_1 : Color.DEEP_SKY_BLUE,
 	PieceType.NO_PIECE : Color.WHITE,
 }
@@ -55,7 +55,7 @@ func _get_drag_data(position):
 	return drag_data
 
 func create_preview_control():
-	var preview_piece: Piece = Piece.new()
+	var preview_piece = Piece.new()
 	preview_piece.piece_type = self.piece_type
 	preview_piece.custom_minimum_size = self.custom_minimum_size / 2
 	

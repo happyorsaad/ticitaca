@@ -67,7 +67,7 @@ func add_piece_to_slot(idx, type):
 	var piece = new_piece(type, false)
 	var slot = game_board.get_children()[idx]
 	slot.add_child(piece)
-	
+
 func _on_piece_dropped_in_slot(idx, type):
 	place_sound.stop()
 	place_sound.play()

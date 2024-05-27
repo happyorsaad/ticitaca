@@ -1,5 +1,9 @@
+CPUParticles2D
+GPUParticles2D
+Node
 MarginContainer
 TextureButton
+TextureRect
 AudioStreamPlayer2D
 AudioStreamPlayer
 Label
@@ -8,7 +12,3 @@ GridContainer
 ColorRect
 Timer
 Control
-HSeparator
-RichTextLabel
-TextureProgressBar
-Node

@@ -22,5 +22,29 @@ grow_vertical = 2
 
 [node name="GameMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_1ncg8")
-volume_db = -9.687
+volume_db = 1.654
 autoplay = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 4
+z_as_relative = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+
+[node name="Music" type="TextureButton" parent="MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Music" type="TextureButton" parent="MarginContainer/Music"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+ignore_texture_size = true
+stretch_mode = 0
+
+[connection signal="pressed" from="MarginContainer/Music" to="." method="_on_music_pressed"]
+[connection signal="pressed" from="MarginContainer/Music/Music" to="." method="_on_music_pressed"]
