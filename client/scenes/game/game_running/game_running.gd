@@ -152,14 +152,15 @@ func disable_if_not_my_turn(my_player, currentTurn):
 	var mouse_filter_value = Control.MOUSE_FILTER_STOP
 	if not my_player.idx == currentTurn:
 		mouse_filter_value = Control.MOUSE_FILTER_IGNORE
-		player_pieces.modulate.a = 0.3
+		player_pieces.modulate.a = 0.7
 	else:
 		player_pieces.modulate.a = 1
 	
 	for node in player_pieces.get_children():
 		node.mouse_filter = mouse_filter_value
 		for child in node.get_children():
-			child.mouse_filter = mouse_filter_value
+			if child.is_class("Control"):
+				child.mouse_filter = mouse_filter_value
 			
 func update_pieces(pieces_ui, player, can_be_dragged):
 	var player_idx = player.idx
@@ -170,15 +171,20 @@ func update_pieces(pieces_ui, player, can_be_dragged):
 		node.queue_free()
 	
 	for i in range(player.numOfSmallPieces):
-		pieces_ui.add_child(new_piece(small_piece, can_be_dragged))
+		pieces_ui.add_child(new_piece(small_piece, can_be_dragged, 100))
 	
 	for i in range(player.numOfLargePieces):
-		pieces_ui.add_child(new_piece(large_piece, can_be_dragged))
+		pieces_ui.add_child(new_piece(large_piece, can_be_dragged, 100))
+	
+	for i in range(8 - player.numOfLargePieces - player.numOfSmallPieces):
+		pieces_ui.add_child(new_piece(PieceType.NO_PIECE, can_be_dragged, 100))
 
-func new_piece(type, can_be_dragged = true) -> Piece:
+func new_piece(type, can_be_dragged = true, piece_size = null) -> Piece:
 	var piece = PIECE.instantiate()
 	piece.piece_type = type
 	piece.can_be_dragged = can_be_dragged
+	if piece_size:
+		piece.min_size = piece_size
 	return piece
 
 func is_my_turn(player, currentTurn):
@@ -228,6 +234,8 @@ func boop(idx, type, update_board = true):
 	for move in pieces_to_move:
 		var piece = move["source"].get_child_piece()
 		var target_slot = move["target"]
+		piece.emotion = Piece.EMOTION.SAD
+		piece.queue_redraw()
 		tween.tween_property(piece, "global_position", target_slot.global_position, 0.5)
 	
 	await tween.finished
@@ -263,6 +271,32 @@ func can_move(placed_type, neighbour_type):
 	if placed_type == PieceType.LARGE_0 || placed_type == PieceType.LARGE_1:
 		return true
 	return neighbour_type == PieceType.SMALL_0 || neighbour_type == PieceType.SMALL_1
+
+#func _on_change_emotion_timeout():
+	#if piece_type == PieceType.NO_PIECE:
+		#return
+	#
+	#if piece_type == PieceType.LARGE_0:
+		#return
+	#
+	#if piece_type == PieceType.LARGE_1:
+		#return
+		#
+	#var rng = RandomNumberGenerator.new()
+	#
+	#var default_emotion = get_default_emotion()
+	#var new_emotion = [EMOTION.CUTE, EMOTION.TOO_SMART].pick_random()
+#
+	#await get_tree().create_timer(rng.randf_range(1, 3)).timeout
+	#
+	#self.emotion = new_emotion
+	#self.queue_redraw()
+	#
+	#await get_tree().create_timer(rng.randf_range(3, 5)).timeout
+	#
+	#self.emotion = default_emotion
+	#self.queue_redraw()
+	
 
 func __mock():
 	self.other_id = "y-KLOZaVI"

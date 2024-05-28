@@ -20,7 +20,7 @@ export class GameRoom extends Room<GameState> {
   
   // Generate a single 4 capital letter room ID.
   generateRoomIdSingle(): string {
-    return generate({ maxLength: 4 , join: "-", exactly: 2 }).toUpperCase();
+    return generate({ maxLength: 6 , join: "-", exactly: 2 }).toUpperCase();
   }
 
   // 1. Get room IDs already registered with the Presence API.
@@ -31,6 +31,7 @@ export class GameRoom extends Room<GameState> {
     let id;
     do {
         id = this.generateRoomIdSingle();
+        console.log(id)
     } while (currentIds.includes(id));
 
     await this.presence.sadd(this.LOBBY_CHANNEL, id);

@@ -1,3 +1,4 @@
+Timer
 CPUParticles2D
 GPUParticles2D
 Node
@@ -10,5 +11,4 @@ Label
 VBoxContainer
 GridContainer
 ColorRect
-Timer
 Control
