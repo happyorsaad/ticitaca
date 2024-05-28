@@ -7,13 +7,39 @@ import { ReconnectPlayerCommand } from "../commands/ReconnectPlayerCommand";
 import { NewOwnerCommand } from "../commands/NewOwnerCommand";
 import { PlayMoveCommand } from "../commands/PlayMoveCommand";
 import { ShortPieceSelectedCommand } from "../commands/ShortPieceSelectedCommand";
+import { generate, count } from "random-words";
 
 export class GameRoom extends Room<GameState> {
   private MAX_PLAYERS: number = 2;
   
+  // The channel where we register the room IDs.
+  // This can be anything you want, it doesn't have to be `$mylobby`.
+  LOBBY_CHANNEL = "$mylobby"
+  LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
   dispatcher: Dispatcher<GameRoom>;
   
-  onCreate (options: any) {
+  // Generate a single 4 capital letter room ID.
+  generateRoomIdSingle(): string {
+    return generate({ maxLength: 4 , join: "-", exactly: 2 }).toUpperCase();
+  }
+
+  // 1. Get room IDs already registered with the Presence API.
+  // 2. Generate room IDs until you generate one that is not already used.
+  // 3. Register the new room ID with the Presence API.
+  async generateRoomId(): Promise<string> {
+    const currentIds = await this.presence.smembers(this.LOBBY_CHANNEL);
+    let id;
+    do {
+        id = this.generateRoomIdSingle();
+    } while (currentIds.includes(id));
+
+    await this.presence.sadd(this.LOBBY_CHANNEL, id);
+    return id;
+  }
+
+
+  async onCreate (options: any) {
+    this.roomId = await this.generateRoomId();
     this.maxClients = this.MAX_PLAYERS;
     this.dispatcher = new Dispatcher(this);
     
@@ -86,8 +112,10 @@ export class GameRoom extends Room<GameState> {
     }
   }
 
-  onDispose() {
+  async onDispose() {
     console.log("room", this.roomId, "disposing...");
+    this.presence.srem(this.LOBBY_CHANNEL, this.roomId);
+    console.log("room", this.roomId, "disposed!");
   }
 
 }
