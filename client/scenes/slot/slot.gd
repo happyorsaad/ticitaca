@@ -61,7 +61,7 @@ func _on_gui_input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_double_click():
 		SignalManager.on_slot_doubleclicked.emit(slot_idx)
 	
-	if event is InputEventScreenTouch and event.double_tap:
+	if event is InputEventScreenTouch and event.pressed:
 		SignalManager.on_slot_doubleclicked.emit(slot_idx)
 	
 		
