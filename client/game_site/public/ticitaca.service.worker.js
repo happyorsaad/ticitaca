@@ -3,7 +3,7 @@
 // that they need an Internet connection to run the project if desired.
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
-const CACHE_VERSION = "1716989631|48776727674";
+const CACHE_VERSION = "1716990651|49796184801";
 const CACHE_PREFIX = "TiciTaca-sw-cache-";
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 const OFFLINE_URL = "ticitaca.offline.html";
