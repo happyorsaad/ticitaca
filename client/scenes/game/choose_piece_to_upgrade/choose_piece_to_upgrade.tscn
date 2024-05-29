@@ -38,7 +38,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Double Click The Small Piece To Upgrade
+text = "Tap A Small Piece To Upgrade
 
 
 "

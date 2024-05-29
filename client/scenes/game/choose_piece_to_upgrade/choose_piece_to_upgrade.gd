@@ -28,6 +28,9 @@ func update_board_pieces(state):
 	var my_id = Client.get_client_id()
 	var my_idx = state.players.at(my_id).idx
 	
+	if my_idx != state.currentTurn:
+		label.text = "Other Player Choosing Piece To Upgrade"
+		
 	var board: Array = state.board.to_object()
 	
 	if game_board.get_child_count() == 0:

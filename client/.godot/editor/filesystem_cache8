@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1716987005
+::res://::1716988272
 default_env.tres::Environment::-1::1715590258::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1716927288::0::1::::<><>::
 game_manager.tscn::PackedScene::4885076313190517262::1715972097::0::1::::<><>::
@@ -1181,14 +1181,14 @@ README.md::TextFile::-1::1716799486::0::1::::<><>::
 HISTORY.md::TextFile::-1::1716799486::0::1::::<><>::
 package.json::JSON::-1::1716799486::0::1::::<><>::
 README.md::TextFile::-1::1716799486::0::1::::<><>::
-::res://game_site/public/::1716987014
-ticitaca.144x144.png::CompressedTexture2D::3225880565539444117::1716987014::1716987243::1::::<><>::
-ticitaca.180x180.png::CompressedTexture2D::7820253887364336511::1716987014::1716987243::1::::<><>::
-ticitaca.512x512.png::CompressedTexture2D::6772961375251249542::1716987014::1716987243::1::::<><>::
-ticitaca.apple-touch-icon.png::CompressedTexture2D::5614764216279862364::1716987014::1716981559::1::::<><>::
-ticitaca.icon.png::CompressedTexture2D::2378177394052176258::1716987014::1716981559::1::::<><>::
-ticitaca.manifest.json::JSON::-1::1716987014::0::1::::<><>::
-ticitaca.png::CompressedTexture2D::656705482503618863::1716987014::1716981559::1::::<><>::
+::res://game_site/public/::1716988350
+ticitaca.144x144.png::CompressedTexture2D::2968643484712678039::1716988350::1716988797::1::::<><>::
+ticitaca.180x180.png::CompressedTexture2D::6096245854910214339::1716988350::1716988797::1::::<><>::
+ticitaca.512x512.png::CompressedTexture2D::2936853497396569237::1716988350::1716988797::1::::<><>::
+ticitaca.apple-touch-icon.png::CompressedTexture2D::8931472634587998887::1716988350::1716988797::1::::<><>::
+ticitaca.icon.png::CompressedTexture2D::6761649817046141254::1716988350::1716988797::1::::<><>::
+ticitaca.manifest.json::JSON::-1::1716988350::0::1::::<><>::
+ticitaca.png::CompressedTexture2D::4797689704587347065::1716988350::1716988797::1::::<><>::
 ::res://network/::1716814090
  client.tscn::PackedScene::1880624316576911766::1716311495::0::1::::<><>::
 colyseus_client.gd::GDScript::-1::1716814090::0::1::::<>Node<>::
@@ -1200,9 +1200,9 @@ connection_lost.tscn::PackedScene::1222361440415527926::1716717313::0::1::::<><>
 ::res://scenes/game/::1716986666
 game.gd::GDScript::-1::1716807484::0::1::::<>Control<>::
 game.tscn::PackedScene::15141378969694585::1716986666::0::1::::<><>::res://scenes/game/game.gd
-::res://scenes/game/choose_piece_to_upgrade/::1716987025
+::res://scenes/game/choose_piece_to_upgrade/::1716988307
 choose_piece_to_upgrade.gd::GDScript::-1::1716756785::0::1::::<>Control<>::
-choose_piece_to_upgrade.tscn::PackedScene::2587334562134794044::1716987025::0::1::::<><>::res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.gd<>uid://v0dvnefqf7lq::::res://assets/ui/Font/kenvector_future_thin.ttf
+choose_piece_to_upgrade.tscn::PackedScene::2587334562134794044::1716988307::0::1::::<><>::res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.gd<>uid://v0dvnefqf7lq::::res://assets/ui/Font/kenvector_future_thin.ttf
 ::res://scenes/game/game_running/::1716986665
 game_running.gd::GDScript::-1::1716938842::0::1::::<>Control<>::
 game_running.tscn::PackedScene::1053882712999412849::1716986665::0::1::::<><>::res://scenes/game/game_running/game_running.gd<>uid://blo28ep4j1q8d::::res://scenes/slot/board_slot.tscn<>uid://dmrypje281jnn::::res://assets/ui/Font/kenvector_future.ttf<>uid://c0gqhvh5attsu::::res://assets/sounds/place.wav
@@ -1226,9 +1226,9 @@ player_disconnected.tscn::PackedScene::7635675390806181115::1716986666::0::1::::
 ::res://scenes/reconnect/::1716986666
 reconnect.gd::GDScript::-1::1716705465::0::1::::<>Control<>::
 reconnect.tscn::PackedScene::2608182757637086781::1716986666::0::1::::<><>::uid://v0dvnefqf7lq::::res://assets/ui/Font/kenvector_future_thin.ttf<>res://scenes/reconnect/reconnect.gd<>uid://c8sdithnhuqdc::::res://assets/button_label.tres<>uid://cbxi5xursb4qi::::res://assets/ui/PNG/green_button05.png<>uid://5mdw5vqvh0k7::::res://assets/ui/PNG/green_button13.png<>uid://dya2h5f5tbe8x::::res://assets/ui/PNG/red_button12.png<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn<>uid://blnahmsuiwned::::res://assets/ui/PNG/red_button10.png
-::res://scenes/slot/::1716986819
+::res://scenes/slot/::1716988307
 board_slot.tscn::PackedScene::3189097776868012901::1716986666::0::1::::<><>::res://scenes/slot/slot.gd
-slot.gd::GDScript::-1::1716986819::0::1::::Slot<>Control<>::
+slot.gd::GDScript::-1::1716988307::0::1::::Slot<>Control<>::
 ::res://scenes/spinner/::1716235081
 spinner.gd::GDScript::-1::1716039918::0::1::::<>TextureProgressBar<>::
 spinner.tscn::PackedScene::8760736946045524747::1716235081::0::1::::<><>::uid://be2jnhppu0yhr::::res://assets/ui/Godot Spinner Progress.png<>res://scenes/spinner/spinner.gd
