@@ -13,3 +13,4 @@ res://scenes/slot/board_slot.tscn
 res://scenes/piece/piece.gd
 res://scenes/game/game_running/game_running.gd
 res://scenes/slot/slot.gd
+res://addons/godot_colyseus/lib/decoder.gd
