@@ -62,8 +62,9 @@ func _on_gui_input(event):
 		SignalManager.on_slot_doubleclicked.emit(slot_idx)
 		return
 		
-	if event is InputEventScreenTouch and event.pressed:
-		SignalManager.on_slot_doubleclicked.emit(slot_idx)
+	if event is InputEventScreenTouch:
+		if event.is_double_tap():
+			SignalManager.on_slot_doubleclicked.emit(slot_idx)
 	
 		
 func _can_drop_data(at_position, data):
