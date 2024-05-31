@@ -1,4 +1,5 @@
-res://scenes/start/start.tscn
+res://scenes/game/game.tscn
+res://scenes/chat/chat_bubble.gd
 res://scenes/main/main.tscn
 res://scenes/game/game_running/game_running.tscn
 res://scenes/piece/piece.tscn
@@ -6,12 +7,12 @@ res://scenes/multiplayer_controls/multiplayer_controls.tscn
 res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.tscn
 res://scenes/game/round_over/round_over.tscn
 res://scenes/reconnect/reconnect.tscn
+res://scenes/start/start.tscn
 res://scenes/game/waiting/game_waiting.tscn
-res://scenes/game/game.tscn
 res://scenes/player_disconnected/player_disconnected.tscn
 res://scenes/slot/board_slot.tscn
-res://scenes/piece/piece.gd
-res://scenes/game/game_running/game_running.gd
-res://scenes/slot/slot.gd
-res://addons/godot_colyseus/lib/decoder.gd
-res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.gd
+res://scenes/chat/chat_bubble.tscn
+res://scenes/chat/chat_window.tscn
+res://scenes/chat/chat_window.gd
+res://scenes/game/game.gd
+res://scenes/main/main.gd

@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://bawrtwujfs7xm"]
+
+[ext_resource type="Script" path="res://scenes/chat/chat_window.gd" id="1_v8dka"]
+[ext_resource type="AudioStream" uid="uid://suq431xy14qh" path="res://assets/sounds/chat_ping.mp3" id="3_co7tt"]
+[ext_resource type="FontFile" uid="uid://ddmf2vrytlktl" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="3_pqrwi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3fa2w"]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+bg_color = Color(0.988235, 1, 1, 0.862745)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.231303, 0.32907, 0.341297, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oh786"]
+content_margin_left = 50.0
+content_margin_top = 25.0
+content_margin_right = 50.0
+content_margin_bottom = 25.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0923971, 0.0923971, 0.092397, 1)
+border_blend = true
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+corner_detail = 13
+shadow_color = Color(0, 0, 0, 0.92549)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[node name="ChatWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 10
+size_flags_vertical = 10
+mouse_filter = 2
+script = ExtResource("1_v8dka")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -771.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 25
+
+[node name="ChatPanel" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_3fa2w")
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="ChatList" type="VBoxContainer" parent="VBoxContainer/ChatPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/separation = 10
+
+[node name="Input" type="LineEdit" parent="VBoxContainer"]
+show_behind_parent = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_pqrwi")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_oh786")
+placeholder_text = " >"
+clear_button_enabled = true
+caret_blink = true
+
+[node name="ChatSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_co7tt")
+
+[connection signal="text_changed" from="VBoxContainer/Input" to="." method="_on_input_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/Input" to="." method="_on_input_text_submitted"]

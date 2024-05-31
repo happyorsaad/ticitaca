@@ -62,6 +62,20 @@ export class GameRoom extends Room<GameState> {
         idx: message.location,
       });
     });
+
+    this.onMessage("chat_message", (client, message) => {
+      console.log("CHAT_MESSAGE", {
+        sessionId: client.sessionId,
+        message: message.message,
+        name: this.state.players.get(client.sessionId).name,
+      });
+
+      this.broadcast("chat_message", {
+        sessionId: client.sessionId,
+        message: message.message,
+        name: this.state.players.get(client.sessionId).name,
+      });
+    });
   }
 
   onJoin (client: Client, options: any) {

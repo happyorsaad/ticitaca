@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://hlm2acq7tor"]
+[gd_scene load_steps=4 format=3 uid="uid://hlm2acq7tor"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_8ickd"]
+[ext_resource type="PackedScene" uid="uid://bawrtwujfs7xm" path="res://scenes/chat/chat_window.tscn" id="2_xofeb"]
+[ext_resource type="Texture2D" uid="uid://o2f50e8dorqq" path="res://assets/Conversation Line.png" id="3_kqtbk"]
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -31,4 +33,52 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MarginContainer" type="MarginContainer" parent="."]
+top_level = true
+custom_minimum_size = Vector2(1080, 1920)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1080.0
+offset_top = -1920.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+mouse_default_cursor_shape = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 180
+
+[node name="ChatWindow" parent="MarginContainer" instance=ExtResource("2_xofeb")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 1
+mouse_filter = 1
+
+[node name="ChatButtonContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="ChatIcon" type="TextureButton" parent="ChatButtonContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("3_kqtbk")
+ignore_texture_size = true
+stretch_mode = 5
+
 [connection signal="timeout" from="RefreshState" to="." method="_on_refresh_state_timeout"]
+[connection signal="pressed" from="ChatButtonContainer/ChatIcon" to="." method="_on_chat_icon_pressed"]

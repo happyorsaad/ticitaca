@@ -39,6 +39,7 @@ func connect_to_server(promise) -> bool:
 	
 	room_var.on_state_change.on(_on_state)
 	room_var.on_message("player_move").on(_on_message)
+	room_var.on_message("chat_message").on(_on_chat)
 	room_var.on_leave.on(_on_leave)
 	self.room = room_var
 	
@@ -56,6 +57,8 @@ func get_room_id():
 	return room.room_id
 	
 func get_client_id():
+	if not room:
+		return null
 	return room.session_id
 	
 func _on_state(state):
@@ -63,7 +66,11 @@ func _on_state(state):
 	
 func _on_message(message):
 	SignalManager.on_message_received.emit("player_move", message)
-	
+
+func _on_chat(message):
+	print("_on_chat", message)
+	SignalManager.on_message_received.emit("chat_message", message)
+
 func send_message(type, value):
 	self.room.send(type, value)
 

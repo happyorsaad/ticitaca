@@ -3,12 +3,12 @@
 // that they need an Internet connection to run the project if desired.
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
-const CACHE_VERSION = "1716990651|49796184801";
+const CACHE_VERSION = "1717186622|5035134527";
 const CACHE_PREFIX = "TiciTaca-sw-cache-";
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
 const OFFLINE_URL = "ticitaca.offline.html";
 // Files that will be cached on load.
-const CACHED_FILES = ["ticitaca.html","ticitaca.js","ticitaca.offline.html","ticitaca.icon.png","ticitaca.apple-touch-icon.png","ticitaca.worker.js","ticitaca.audio.worklet.js"];
+const CACHED_FILES = ["ticitaca.html","ticitaca.js","ticitaca.offline.html","ticitaca.worker.js","ticitaca.audio.worklet.js"];
 // Files that we might not want the user to preload, and will only be cached on first load.
 const CACHABLE_FILES = ["ticitaca.wasm","ticitaca.pck","ticitaca.side.wasm"];
 const FULL_CACHE = CACHED_FILES.concat(CACHABLE_FILES);

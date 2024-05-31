@@ -1,6 +1,7 @@
 extends Control
 
 @onready var state_screen = $StateScreen
+@onready var chat_window = $MarginContainer/ChatWindow
 
 # Screens
 const player_disconnected = preload("res://scenes/player_disconnected/player_disconnected.tscn")
@@ -17,6 +18,8 @@ const GamePlayState = Schema.GamePlayState
 
 var state : Schema.GameState
 var prev_state_obj
+
+var show_chat_window = false
 
 const GAME_SCREENS = {
 	GamePlayState.RUNNING : game_running,
@@ -109,3 +112,7 @@ func change_game_screen_to(screen):
 	var curr = screen.instantiate()
 	state_screen.add_child(curr)
 	return curr
+	
+func _on_chat_icon_pressed():
+	show_chat_window = not show_chat_window
+	chat_window.visible = show_chat_window
