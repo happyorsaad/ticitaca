@@ -54,7 +54,9 @@ func show_toast(text):
 	chat_sound.play()
 		
 func _on_input_text_submitted(new_text):
+	print("_on_input_text_submitted")
 	chat_input.text = ""
+	chat_input.release_focus()
 	onscreen_keyboard.visible = false
 	SignalManager.on_message_received.emit("chat_message", {
 		"sessionId" : Client.get_client_id(),
@@ -69,4 +71,4 @@ func _on_input_text_submitted(new_text):
 func _on_input_focus_entered():
 	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
 		onscreen_keyboard.visible = true
-	
+		
