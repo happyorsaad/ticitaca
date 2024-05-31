@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bawrtwujfs7xm"]
+[gd_scene load_steps=7 format=3 uid="uid://bawrtwujfs7xm"]
 
 [ext_resource type="Script" path="res://scenes/chat/chat_window.gd" id="1_v8dka"]
+[ext_resource type="Script" path="res://addons/onscreenkeyboard/onscreen_keyboard.gd" id="3_4mpos"]
 [ext_resource type="AudioStream" uid="uid://suq431xy14qh" path="res://assets/sounds/chat_ping.mp3" id="3_co7tt"]
 [ext_resource type="FontFile" uid="uid://ddmf2vrytlktl" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="3_pqrwi"]
 
@@ -89,8 +90,17 @@ theme_override_fonts/font = ExtResource("3_pqrwi")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_oh786")
 placeholder_text = " >"
+virtual_keyboard_enabled = false
 clear_button_enabled = true
 caret_blink = true
+
+[node name="OnscreenKeyboard" type="PanelContainer" parent="VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+script = ExtResource("3_4mpos")
+auto_show = false
+animate = false
 
 [node name="ChatSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_co7tt")

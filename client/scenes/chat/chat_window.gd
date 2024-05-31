@@ -4,6 +4,7 @@ extends Control
 @onready var chat_panel = $VBoxContainer/ChatPanel
 @onready var chat_list = $VBoxContainer/ChatPanel/ChatList
 @onready var chat_sound = $ChatSound
+@onready var onscreen_keyboard = $VBoxContainer/OnscreenKeyboard
 
 const COLORS = [
 	Color.LIGHT_GREEN,
@@ -54,6 +55,7 @@ func show_toast(text):
 		
 func _on_input_text_submitted(new_text):
 	chat_input.text = ""
+	onscreen_keyboard.visible = false
 	SignalManager.on_message_received.emit("chat_message", {
 		"sessionId" : Client.get_client_id(),
 		"name": my_name,
@@ -66,8 +68,5 @@ func _on_input_text_submitted(new_text):
 
 func _on_input_focus_entered():
 	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
-		DisplayServer.virtual_keyboard_hide()
-		var chat = JavaScriptBridge.eval("prompt('');", true)
-		if chat:
-			_on_input_text_submitted(chat)
-		chat_input.release_focus()
+		onscreen_keyboard.visible = true
+	
