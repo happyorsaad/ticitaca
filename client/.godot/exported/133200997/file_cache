@@ -22,4 +22,4 @@ res://scenes/start/start.tscn::c8c744df50959e35b7fc6c3ad88fc86d::1717186263::res
 res://default_env.tres::a52129f071fffbd20a6013a6c0edec1e::1715590258::res://.godot/exported/133200997/export-7cf3fd67ad9f55210191d77b582b8209-default_env.res
 res://game_manager.tscn::311639186898ce3c7a41bf23937d26d3::1715972097::res://.godot/exported/133200997/export-bd5ff995e4b5bf3753a213b334e1b8c4-game_manager.scn
 res://scenes/chat/chat_bubble.tscn::ddb44189a4b3ac4add7b9a5a881c5208::1717186264::res://.godot/exported/133200997/export-176ace28714fcbe7def79efc51640a25-chat_bubble.scn
-res://scenes/chat/chat_window.tscn::8f780db3f05ee8dc5e1fe2b8ce9317e0::1717186264::res://.godot/exported/133200997/export-3d9648d165894f5cb8e508df5d31c2bc-chat_window.scn
+res://scenes/chat/chat_window.tscn::eda30c1c52b8cbadeb5ce2b801bb1b7b::1717188793::res://.godot/exported/133200997/export-3d9648d165894f5cb8e508df5d31c2bc-chat_window.scn

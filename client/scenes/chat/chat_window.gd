@@ -63,3 +63,11 @@ func _on_input_text_submitted(new_text):
 	Client.send_message("chat_message", {
 		"message": new_text
 	})
+
+func _on_input_focus_entered():
+	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+		DisplayServer.virtual_keyboard_hide()
+		var chat = JavaScriptBridge.eval("prompt('');", true)
+		if chat:
+			_on_input_text_submitted(chat)
+		chat_input.release_focus()
