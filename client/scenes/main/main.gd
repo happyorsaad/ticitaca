@@ -7,8 +7,8 @@ var curr_scene
 @onready var music_btn: TextureButton = $MarginContainer/Music
 @onready var game_music: AudioStreamPlayer2D = $GameMusic
 
-const AUDIO_OFF = preload("res://assets/ui/Onscreen Controls/Sprites/line-dark/lineDark10.png")
-const AUDIO_ON = preload("res://assets/ui/Onscreen Controls/Sprites/line-dark/lineDark08.png")
+const AUDIO_OFF = preload("res://assets/ui/audio_off.png")
+const AUDIO_ON = preload("res://assets/ui/audio_on.png")
 
 var music = true
 

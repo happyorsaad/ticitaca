@@ -17,3 +17,6 @@ res://scenes/chat/chat_window.gd
 res://scenes/game/game.gd
 res://scenes/main/main.gd
 res://addons/onscreenkeyboard/onscreen_keyboard.gd
+res://network/ client.tscn
+res://game_manager.tscn
+res://assets/button_label.tres

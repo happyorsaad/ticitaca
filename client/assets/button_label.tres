@@ -1,9 +1,9 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c8sdithnhuqdc"]
 
-[ext_resource type="FontFile" uid="uid://dmrypje281jnn" path="res://assets/ui/Font/kenvector_future.ttf" id="1_kio04"]
+[ext_resource type="FontFile" uid="uid://bg7ybfvqme6ao" path="res://assets/Fonts/KennyFonts/Kenney Future.ttf" id="1_yd5kr"]
 
 [resource]
-font = ExtResource("1_kio04")
+font = ExtResource("1_yd5kr")
 font_size = 35
 outline_size = 1
 outline_color = Color(0, 0, 0, 1)

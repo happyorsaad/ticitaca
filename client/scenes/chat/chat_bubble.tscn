@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/chat/chat_bubble.gd" id="1_fpw57"]
 [ext_resource type="Texture2D" uid="uid://bcvavthb7wtbj" path="res://assets/square_speech.png" id="2_rd31l"]
-[ext_resource type="FontFile" uid="uid://ddmf2vrytlktl" path="res://assets/Fonts/Kenney Future Narrow.ttf" id="3_jrt02"]
+[ext_resource type="FontFile" uid="uid://ddmf2vrytlktl" path="res://assets/Fonts/KennyFonts/Kenney Future Narrow.ttf" id="3_htssj"]
 
 [node name="ChatBubble" type="MarginContainer"]
 offset_right = 938.0
@@ -27,7 +27,7 @@ theme_override_constants/margin_bottom = 25
 [node name="ChatMessage" type="Label" parent="Margin"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_jrt02")
+theme_override_fonts/font = ExtResource("3_htssj")
 theme_override_font_sizes/font_size = 35
 text = "HELLO from saad hussainjsnkjnsknsk
 "
