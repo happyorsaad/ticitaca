@@ -285,7 +285,7 @@ func blink_neighbours(idx, type):
 		slot.has_mouse = false
 		slot.queue_redraw()
 		
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	
 	for index in neighbours.size(): 
 		var slot = game_board.get_children()[neighbours[index]]
