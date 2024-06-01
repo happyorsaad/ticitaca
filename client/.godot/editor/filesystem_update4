@@ -18,3 +18,4 @@ res://game_manager.tscn
 res://scenes/slot/slot.gd
 res://scenes/piece/piece.gd
 res://scenes/game/game_running/game_running.gd
+res://scenes/chat/chat_window.gd
