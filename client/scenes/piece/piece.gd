@@ -16,7 +16,7 @@ const Schema = preload("res://network/game_schema.gd")
 const PieceType = Schema.PieceType
 
 @export var piece_type = PieceType.SMALL_0
-var min_size = 128
+var min_size = 100
 var can_be_dragged = true
 var emotion = null
 

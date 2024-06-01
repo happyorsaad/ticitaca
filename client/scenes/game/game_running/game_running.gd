@@ -193,7 +193,20 @@ func is_my_turn(player, currentTurn):
 func is_in_bounds(row, col):
 	return row >= 0 && row <= 5 && col >= 0 && col <= 5
 
+func get_neighbours(idx):
+	var neighbours = []
+	var row = idx / BOARD_SIZE
+	var col = idx % BOARD_SIZE
+	for index in MOVE_DIRECTIONS.size():
+		var row_adj = row + MOVE_DIRECTIONS[index]["row"]
+		var col_adj = col + MOVE_DIRECTIONS[index]["col"]
+		if is_in_bounds(row_adj, col_adj):
+			neighbours.push_back(row_adj * BOARD_SIZE + col_adj)
+	return neighbours
+	
 func boop(idx, type, update_board = true):
+	blink_neighbours(idx, type)
+	
 	var row = idx / BOARD_SIZE
 	var col = idx % BOARD_SIZE
 
@@ -250,6 +263,36 @@ func boop(idx, type, update_board = true):
 				target_slot, 
 				piece.piece_type
 			)
+
+func blink_neighbours(idx, type):
+	var color = Color.WHITE
+	match type:
+		PieceType.SMALL_0:
+			color = Color.LIGHT_GREEN
+		PieceType.LARGE_0:
+			color = Color.LIGHT_GREEN
+		PieceType.SMALL_1:
+			color = Color.SKY_BLUE
+		PieceType.LARGE_1:
+			color = Color.SKY_BLUE
+	
+	var neighbours = get_neighbours(idx)
+	neighbours.append(idx)
+	for index in neighbours.size(): 
+		var slot = game_board.get_children()[neighbours[index]]
+		slot.self_modulate = color
+		slot.self_modulate.a = 0.75
+		slot.has_mouse = false
+		slot.queue_redraw()
+		
+	await get_tree().create_timer(1).timeout
+	
+	for index in neighbours.size(): 
+		var slot = game_board.get_children()[neighbours[index]]
+		slot.self_modulate = Color.WHITE
+		slot.self_modulate.a = 1
+		slot.queue_redraw()
+	
 	
 func move_piece_to_slot(source_slot, target_slot, type):
 	if not source_slot:

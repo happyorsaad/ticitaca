@@ -15,3 +15,6 @@ res://scenes/slot/board_slot.tscn
 res://scenes/chat/chat_window.tscn
 res://network/ client.tscn
 res://game_manager.tscn
+res://scenes/slot/slot.gd
+res://scenes/piece/piece.gd
+res://scenes/game/game_running/game_running.gd

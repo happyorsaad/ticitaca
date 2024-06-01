@@ -2,7 +2,7 @@ extends Control
 
 class_name Slot
 
-@export var min_size = 128
+@export var min_size = 100
 @export var border_width = 1
 
 var piece: PackedScene = preload("res://scenes/piece/piece.tscn")
@@ -35,7 +35,7 @@ func _draw():
 	var size = min_size - 2 * border_width
 	if has_mouse:
 		draw_rect(Rect2(border_width, border_width, size, size),
-			Color.LIGHT_YELLOW, 
+			Color.MINT_CREAM, 
 			true, # filled
 			border_width
 		)
@@ -45,6 +45,14 @@ func _draw():
 		false, # filled
 		border_width
 	)
+	
+	var inner_size = min_size - 5 * border_width
+	draw_rect(Rect2(border_width * 2, border_width * 2, inner_size, inner_size),
+		Color.WHITE, 
+		false, # filled
+		2 * border_width
+	)
+	
 
 func _on_mouse_entered():
 	has_mouse = true

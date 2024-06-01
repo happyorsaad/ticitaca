@@ -62,7 +62,7 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
     });
     this.clock.setTimeout(() => {
       this.playMove(sessionId, pieceType, location);
-    }, 1_500);
+    }, 5_000);
   }
 
   playMove(sessionId: string, pieceType: number, location: number){
