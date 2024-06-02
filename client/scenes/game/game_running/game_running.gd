@@ -8,6 +8,8 @@ extends Control
 @onready var player_pieces = $Layout/PlayerPieces
 @onready var place_sound = $place_sound
 
+const BOOP_TIME = 0.5
+
 const PIECE = preload("res://scenes/piece/piece.tscn")
 const SLOT = preload("res://scenes/slot/board_slot.tscn")
 
@@ -26,6 +28,13 @@ const MOVE_DIRECTIONS = [
 	{ "row": -1, "col": 1, "boop_row": -2, "boop_col": 2 },
 	{ "row": 1, "col": -1, "boop_row": 2, "boop_col": -2 },
 	{ "row": 1, "col": 1, "boop_row": 2, "boop_col": 2 },
+];
+
+const ROW_MATCH_DIRECTIONS = [
+	{ "row": -1, "col": 0, "row_2": 1, "col_2": 0 },
+	{ "row": 0, "col": -1, "row_2": 0, "col_2": 1 },
+	{ "row": -1, "col": -1, "row_2": 1, "col_2": 1 },
+	{ "row": 1, "col": -1, "row_2": -1, "col_2": 1 },	
 ];
 
 const PIECE_TYPES_FOR_IDX = {
@@ -203,7 +212,64 @@ func get_neighbours(idx):
 		if is_in_bounds(row_adj, col_adj):
 			neighbours.push_back(row_adj * BOARD_SIZE + col_adj)
 	return neighbours
-	
+
+func player_type_for_piece(type):
+	match type:
+		PieceType.SMALL_0:
+			return 0
+		PieceType.LARGE_0:
+			return 0
+		PieceType.SMALL_1:
+			return 1
+		PieceType.LARGE_1:
+			return 1
+			
+func highlight_consecutive_slots():
+	var slots_to_blink: Array = []
+	var tween = get_tree().create_tween().set_loops(4)
+	tween.set_parallel(true)
+	for idx in game_board.get_child_count():
+		var row = idx / BOARD_SIZE
+		var col = idx % BOARD_SIZE
+		
+		var piece_center: Piece = game_board.get_children()[idx].get_child_piece()
+		if not piece_center:
+			continue
+			
+		for move_idx in ROW_MATCH_DIRECTIONS.size():
+			var row_adj = row + ROW_MATCH_DIRECTIONS[move_idx]["row"]
+			var col_adj = col + ROW_MATCH_DIRECTIONS[move_idx]["col"]
+			var row_2_adj = row + ROW_MATCH_DIRECTIONS[move_idx]["row_2"]
+			var col_2_adj = col + ROW_MATCH_DIRECTIONS[move_idx]["col_2"]
+			
+			if is_in_bounds(row_adj, col_adj) and is_in_bounds(row_2_adj, col_2_adj):
+				var adj_location = row_adj * BOARD_SIZE + col_adj
+				var adj_location_2 = row_2_adj * BOARD_SIZE + col_2_adj
+				
+				var piece: Piece = game_board.get_children()[adj_location].get_child_piece()
+				var piece_2: Piece = game_board.get_children()[adj_location_2].get_child_piece()
+			
+				if piece and piece_2:
+					print("types_of_adjacent", piece.piece_type, piece_2.piece_type)
+					if player_type_for_piece(piece_center.piece_type) == player_type_for_piece(piece.piece_type) and player_type_for_piece(piece_center.piece_type) == player_type_for_piece(piece_2.piece_type):
+						
+						slots_to_blink.append(
+							game_board.get_children()[adj_location]
+						)
+						
+						slots_to_blink.append(
+							game_board.get_children()[idx]	
+						)
+						
+						slots_to_blink.append(
+							game_board.get_children()[adj_location_2]
+						)
+				
+	for idx in slots_to_blink.size():
+		var slot = slots_to_blink[idx]
+		tween.tween_property(slot, "modulate:a", 0.2, 0.2).set_trans(Tween.TRANS_SINE)
+		tween.chain().tween_property(slot, "modulate:a", 1, 0.2).set_trans(Tween.TRANS_SINE)
+
 func boop(idx, type, update_board = true):
 	blink_neighbours(idx, type)
 	
@@ -211,6 +277,8 @@ func boop(idx, type, update_board = true):
 	var col = idx % BOARD_SIZE
 
 	var pieces_to_move: Array = []
+	var pieces_to_move_outside_board: Array = []
+	var pieces_to_bounce: Array = []
 	
 	for index in MOVE_DIRECTIONS.size():
 		var row_adj = row + MOVE_DIRECTIONS[index]["row"]
@@ -228,6 +296,11 @@ func boop(idx, type, update_board = true):
 					var boop_col = col + MOVE_DIRECTIONS[index]["boop_col"]
 					var boop_to_idx = boop_row * BOARD_SIZE + boop_col
 					
+					var bounce_offset = Vector2(
+						MOVE_DIRECTIONS[index]["boop_col"] * Slot.min_size * 0.1,
+						MOVE_DIRECTIONS[index]["boop_row"] * Slot.min_size * 0.1
+					)
+					
 					if is_in_bounds(boop_row, boop_col):
 						if game_board.get_children()[boop_to_idx].get_child_count() == 0:
 							var target_slot = game_board.get_children()[boop_to_idx]
@@ -237,10 +310,26 @@ func boop(idx, type, update_board = true):
 									"target" : target_slot
 								}
 							)
+						else:
+							pieces_to_bounce.append(
+								{
+									"source" : source_slot,
+									"target_pos": source_slot.global_position + bounce_offset
+								}
+							)
 					else:
 						var slot = game_board.get_children()[adj_location]
-						for child in slot.get_children():
-							child.queue_free()
+						var offset = Vector2(
+							MOVE_DIRECTIONS[index]["boop_col"] * Slot.min_size / 2,
+							MOVE_DIRECTIONS[index]["boop_row"] * Slot.min_size / 2
+						)
+						pieces_to_move_outside_board.append(
+							{
+								"source" : slot, 
+								"target_pos" : slot.global_position + offset
+							}
+						)
+
 	
 	var tween = get_tree().create_tween().set_loops(1)
 	tween.set_parallel()
@@ -249,10 +338,29 @@ func boop(idx, type, update_board = true):
 		var target_slot = move["target"]
 		piece.emotion = Piece.EMOTION.SAD
 		piece.queue_redraw()
-		tween.tween_property(piece, "global_position", target_slot.global_position, 0.5)
+		tween.tween_property(piece, "global_position", target_slot.global_position, BOOP_TIME)
+	
+	for move in pieces_to_bounce:
+		var piece = move["source"].get_child_piece()
+		piece.emotion = Piece.EMOTION.TOO_SMART
+		piece.queue_redraw()
+		tween.tween_property(piece, "global_position", move["target_pos"], 0.3).set_trans(Tween.TRANS_BOUNCE)
+		tween.chain().tween_property(piece, "global_position", move["source"].global_position, 0.3).set_trans(Tween.TRANS_SPRING)
+	
+	for move in pieces_to_move_outside_board:
+		var piece = move["source"].get_child_piece()
+		var target_pos = move["target_pos"]
+		piece.emotion = Piece.EMOTION.SAD
+		piece.queue_redraw()
+		tween.tween_property(piece, "global_position", target_pos, BOOP_TIME)
 	
 	await tween.finished
 	
+	for move in pieces_to_move_outside_board:
+		var piece = move["source"].get_child_piece()
+		if piece:
+			piece.queue_free()
+		
 	for move in pieces_to_move:
 		var piece = move["source"].get_child_piece()
 		if piece:
@@ -263,6 +371,8 @@ func boop(idx, type, update_board = true):
 				target_slot, 
 				piece.piece_type
 			)
+	
+	highlight_consecutive_slots()
 
 func blink_neighbours(idx, type):
 	var color = Color.WHITE

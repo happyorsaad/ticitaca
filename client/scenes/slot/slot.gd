@@ -2,8 +2,8 @@ extends Control
 
 class_name Slot
 
-@export var min_size = 100
-@export var border_width = 1
+const min_size = 100
+const border_width = 1
 
 var piece: PackedScene = preload("res://scenes/piece/piece.tscn")
 var has_mouse = false

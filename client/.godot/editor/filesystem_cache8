@@ -1,8 +1,8 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1717250062
+::res://::1717313248
 default_env.tres::Environment::-1::1715590258::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1717243638::0::1::::<><>::
-game_manager.tscn::PackedScene::1368311651948327435::1717236557::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1717253735::0::1::::<><>::
+game_manager.tscn::PackedScene::1368311651948327435::1717295329::0::1::::<><>::
 icon.svg::CompressedTexture2D::8566027654189264593::1715590015::1715590020::1::::<><>::
 ::res://addons/::1717189159
 ::res://addons/godot_colyseus/::1715590258
@@ -102,8 +102,8 @@ plugin.gd::GDScript::-1::1716807978::0::1::::<>EditorPlugin<>::
 sound_effects.gd::GDScript::-1::1716807978::0::1::::<><>::
 sound_manager.gd::GDScript::-1::1716807978::0::1::::<>Node<>::
 ::res://android/::1717243599
-::res://assets/::1717234812
-button_label.tres::LabelSettings::7126429453701988504::1717234812::0::1::::<><>::uid://bg7ybfvqme6ao::::res://assets/Fonts/KennyFonts/Kenney Future.ttf
+::res://assets/::1717293995
+button_label.tres::LabelSettings::7126429453701988504::1717293995::0::1::::<><>::uid://bg7ybfvqme6ao::::res://assets/Fonts/KennyFonts/Kenney Future.ttf
 Conversation Line.png::CompressedTexture2D::1038740489839966260::1717170303::1717170337::1::::<><>::
 square_speech.png::CompressedTexture2D::2570188814322792455::1717088686::1717088727::1::::<><>::
 ::res://assets/Fonts/::1717193796
@@ -799,65 +799,65 @@ README.md::TextFile::-1::1716799486::0::1::::<><>::
 HISTORY.md::TextFile::-1::1716799486::0::1::::<><>::
 package.json::JSON::-1::1716799486::0::1::::<><>::
 README.md::TextFile::-1::1716799486::0::1::::<><>::
-::res://game_site/public/::1717243648
-ticitaca.144x144.png::CompressedTexture2D::2968643484712678039::1717243648::1717222720::1::::<><>::
-ticitaca.180x180.png::CompressedTexture2D::6096245854910214339::1717243648::1717222720::1::::<><>::
-ticitaca.512x512.png::CompressedTexture2D::2936853497396569237::1717243648::1717222720::1::::<><>::
+::res://game_site/public/::1717253734
+ticitaca.144x144.png::CompressedTexture2D::2968643484712678039::1717253734::1717222720::1::::<><>::
+ticitaca.180x180.png::CompressedTexture2D::6096245854910214339::1717253734::1717222720::1::::<><>::
+ticitaca.512x512.png::CompressedTexture2D::2936853497396569237::1717253734::1717222720::1::::<><>::
 ticitaca.apple-touch-icon.png::CompressedTexture2D::8931472634587998887::1716990651::1716988797::1::::<><>::
 ticitaca.icon.png::CompressedTexture2D::6761649817046141254::1716990651::1716988797::1::::<><>::
-ticitaca.manifest.json::JSON::-1::1717243648::0::1::::<><>::
-ticitaca.png::CompressedTexture2D::4797689704587347065::1717243648::1716988797::1::::<><>::
-::res://network/::1717236557
- client.tscn::PackedScene::1865954448985727425::1717236557::0::1::::<><>::
+ticitaca.manifest.json::JSON::-1::1717253734::0::1::::<><>::
+ticitaca.png::CompressedTexture2D::4797689704587347065::1717253734::1716988797::1::::<><>::
+::res://network/::1717295328
+ client.tscn::PackedScene::1865954448985727425::1717295328::0::1::::<><>::
 colyseus_client.gd::GDScript::-1::1717096002::0::1::::<>Node<>::
 game_schema.gd::GDScript::-1::1716805467::0::1::::<>Node<>::
 ::res://scenes/::1717021014
-::res://scenes/chat/::1717236557
-chat_bubble.gd::GDScript::-1::1717234812::0::1::::ChatBubble<>MarginContainer<>::
-chat_bubble.tscn::PackedScene::6016632619182668142::1717236557::0::1::::<><>::res://scenes/chat/chat_bubble.gd<>uid://bcvavthb7wtbj::::res://assets/square_speech.png<>uid://ddmf2vrytlktl::::res://assets/Fonts/KennyFonts/Kenney Future Narrow.ttf
-chat_window.gd::GDScript::-1::1717193018::0::1::::<>Control<>::
-chat_window.tscn::PackedScene::2432904300069776282::1717236557::0::1::::<><>::res://scenes/chat/chat_window.gd<>res://addons/onscreenkeyboard/onscreen_keyboard.gd<>uid://suq431xy14qh::::res://assets/sounds/chat_ping.mp3
+::res://scenes/chat/::1717295328
+chat_bubble.gd::GDScript::-1::1717293995::0::1::::ChatBubble<>MarginContainer<>::
+chat_bubble.tscn::PackedScene::6016632619182668142::1717295328::0::1::::<><>::res://scenes/chat/chat_bubble.gd<>uid://bcvavthb7wtbj::::res://assets/square_speech.png<>uid://ddmf2vrytlktl::::res://assets/Fonts/KennyFonts/Kenney Future Narrow.ttf
+chat_window.gd::GDScript::-1::1717253724::0::1::::<>Control<>::
+chat_window.tscn::PackedScene::2432904300069776282::1717295328::0::1::::<><>::res://scenes/chat/chat_window.gd<>res://addons/onscreenkeyboard/onscreen_keyboard.gd<>uid://suq431xy14qh::::res://assets/sounds/chat_ping.mp3
 ::res://scenes/connection_lost/::1716807439
 connection_lost.gd::GDScript::-1::1716807439::0::1::::<>Control<>::
 connection_lost.tscn::PackedScene::1222361440415527926::1716717313::0::1::::<><>::uid://v0dvnefqf7lq::::res://assets/ui/Font/kenvector_future_thin.ttf<>uid://dkpecrdubducf::::res://assets/ui/PNG/yellow_button05.png<>uid://3lrfr0breoad::::res://assets/ui/PNG/yellow_button13.png<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn<>uid://c8sdithnhuqdc::::res://assets/button_label.tres<>res://scenes/connection_lost/connection_lost.gd
 ::res://scenes/game/::1717194521
 game.gd::GDScript::-1::1717183520::0::1::::<>Control<>::
 game.tscn::PackedScene::15141378969694585::1717194521::0::1::::<><>::res://scenes/game/game.gd<>uid://bawrtwujfs7xm::::res://scenes/chat/chat_window.tscn<>uid://o2f50e8dorqq::::res://assets/Conversation Line.png
-::res://scenes/game/choose_piece_to_upgrade/::1717236553
+::res://scenes/game/choose_piece_to_upgrade/::1717295325
 choose_piece_to_upgrade.gd::GDScript::-1::1716990637::0::1::::<>Control<>::
-choose_piece_to_upgrade.tscn::PackedScene::2587334562134794044::1717236553::0::1::::<><>::res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.gd
-::res://scenes/game/game_running/::1717236552
-game_running.gd::GDScript::-1::1716938842::0::1::::<>Control<>::
-game_running.tscn::PackedScene::1053882712999412849::1717236552::0::1::::<><>::res://scenes/game/game_running/game_running.gd<>uid://blo28ep4j1q8d::::res://scenes/slot/board_slot.tscn<>uid://c0gqhvh5attsu::::res://assets/sounds/place.wav
-::res://scenes/game/round_over/::1717236554
+choose_piece_to_upgrade.tscn::PackedScene::2587334562134794044::1717295325::0::1::::<><>::res://scenes/game/choose_piece_to_upgrade/choose_piece_to_upgrade.gd
+::res://scenes/game/game_running/::1717295323
+game_running.gd::GDScript::-1::1717295322::0::1::::<>Control<>::
+game_running.tscn::PackedScene::1053882712999412849::1717295323::0::1::::<><>::res://scenes/game/game_running/game_running.gd<>uid://blo28ep4j1q8d::::res://scenes/slot/board_slot.tscn<>uid://c0gqhvh5attsu::::res://assets/sounds/place.wav
+::res://scenes/game/round_over/::1717295326
 round_over.gd::GDScript::-1::1716755223::0::1::::<>Control<>::
-round_over.tscn::PackedScene::4652021265117588977::1717236554::0::1::::<><>::res://scenes/game/round_over/round_over.gd<>uid://blo28ep4j1q8d::::res://scenes/slot/board_slot.tscn
-::res://scenes/game/waiting/::1717236556
-game_waiting.tscn::PackedScene::8919653680810604479::1717236556::0::1::::<><>::
-::res://scenes/main/::1717236552
+round_over.tscn::PackedScene::4652021265117588977::1717295326::0::1::::<><>::res://scenes/game/round_over/round_over.gd<>uid://blo28ep4j1q8d::::res://scenes/slot/board_slot.tscn
+::res://scenes/game/waiting/::1717295328
+game_waiting.tscn::PackedScene::8919653680810604479::1717295328::0::1::::<><>::
+::res://scenes/main/::1717295323
 main.gd::GDScript::-1::1717194278::0::1::::<>Control<>::
-main.tscn::PackedScene::8004222519598103175::1717236552::0::1::::<><>::res://scenes/main/main.gd<>uid://cxrfge05tbsfl::::res://assets/sounds/music.mp3
-::res://scenes/multiplayer_controls/::1717236553
+main.tscn::PackedScene::8004222519598103175::1717295323::0::1::::<><>::res://scenes/main/main.gd<>uid://cxrfge05tbsfl::::res://assets/sounds/music.mp3
+::res://scenes/multiplayer_controls/::1717295324
 multiplayer_controls.gd::GDScript::-1::1716649327::0::1::::<>CanvasLayer<>::
-multiplayer_controls.tscn::PackedScene::7537761306667803792::1717236553::0::1::::<><>::res://scenes/multiplayer_controls/multiplayer_controls.gd<>uid://dkpecrdubducf::::res://assets/ui/PNG/yellow_button05.png<>uid://3lrfr0breoad::::res://assets/ui/PNG/yellow_button13.png<>uid://c8sdithnhuqdc::::res://assets/button_label.tres<>uid://bknepcvmv17wf::::res://assets/ui/PNG/blue_button05.png<>uid://djeus1x0sodyx::::res://assets/ui/PNG/blue_button13.png<>uid://cqy1l3frqkw3p::::res://assets/ui/PNG/blue_button03.png<>uid://5mdw5vqvh0k7::::res://assets/ui/PNG/green_button13.png<>uid://cftxs1np3qsxb::::res://assets/ui/PNG/red_button02.png<>uid://blnahmsuiwned::::res://assets/ui/PNG/red_button10.png<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn
-::res://scenes/piece/::1717236552
-piece.gd::GDScript::-1::1716938784::0::1::::Piece<>Control<>::
-piece.tscn::PackedScene::2897703448637459534::1717236552::0::1::::<><>::res://scenes/piece/piece.gd
-::res://scenes/player_disconnected/::1717236557
+multiplayer_controls.tscn::PackedScene::7537761306667803792::1717295324::0::1::::<><>::res://scenes/multiplayer_controls/multiplayer_controls.gd<>uid://dkpecrdubducf::::res://assets/ui/PNG/yellow_button05.png<>uid://3lrfr0breoad::::res://assets/ui/PNG/yellow_button13.png<>uid://c8sdithnhuqdc::::res://assets/button_label.tres<>uid://bknepcvmv17wf::::res://assets/ui/PNG/blue_button05.png<>uid://djeus1x0sodyx::::res://assets/ui/PNG/blue_button13.png<>uid://cqy1l3frqkw3p::::res://assets/ui/PNG/blue_button03.png<>uid://5mdw5vqvh0k7::::res://assets/ui/PNG/green_button13.png<>uid://cftxs1np3qsxb::::res://assets/ui/PNG/red_button02.png<>uid://blnahmsuiwned::::res://assets/ui/PNG/red_button10.png<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn
+::res://scenes/piece/::1717295324
+piece.gd::GDScript::-1::1717250278::0::1::::Piece<>Control<>::
+piece.tscn::PackedScene::2897703448637459534::1717295324::0::1::::<><>::res://scenes/piece/piece.gd
+::res://scenes/player_disconnected/::1717295328
 player_disconnected.gd::GDScript::-1::1716310065::0::1::::<>Control<>::
-player_disconnected.tscn::PackedScene::7635675390806181115::1717236557::0::1::::<><>::res://scenes/player_disconnected/player_disconnected.gd<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn<>uid://dkpecrdubducf::::res://assets/ui/PNG/yellow_button05.png<>uid://3lrfr0breoad::::res://assets/ui/PNG/yellow_button13.png<>uid://c8sdithnhuqdc::::res://assets/button_label.tres
-::res://scenes/reconnect/::1717236555
+player_disconnected.tscn::PackedScene::7635675390806181115::1717295328::0::1::::<><>::res://scenes/player_disconnected/player_disconnected.gd<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn<>uid://dkpecrdubducf::::res://assets/ui/PNG/yellow_button05.png<>uid://3lrfr0breoad::::res://assets/ui/PNG/yellow_button13.png<>uid://c8sdithnhuqdc::::res://assets/button_label.tres
+::res://scenes/reconnect/::1717295326
 reconnect.gd::GDScript::-1::1716705465::0::1::::<>Control<>::
-reconnect.tscn::PackedScene::2608182757637086781::1717236555::0::1::::<><>::res://scenes/reconnect/reconnect.gd<>uid://c8sdithnhuqdc::::res://assets/button_label.tres<>uid://cbxi5xursb4qi::::res://assets/ui/PNG/green_button05.png<>uid://5mdw5vqvh0k7::::res://assets/ui/PNG/green_button13.png<>uid://dya2h5f5tbe8x::::res://assets/ui/PNG/red_button12.png<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn<>uid://blnahmsuiwned::::res://assets/ui/PNG/red_button10.png
-::res://scenes/slot/::1717236557
-board_slot.tscn::PackedScene::3189097776868012901::1717236557::0::1::::<><>::res://scenes/slot/slot.gd
-slot.gd::GDScript::-1::1716989495::0::1::::Slot<>Control<>::
+reconnect.tscn::PackedScene::2608182757637086781::1717295326::0::1::::<><>::res://scenes/reconnect/reconnect.gd<>uid://c8sdithnhuqdc::::res://assets/button_label.tres<>uid://cbxi5xursb4qi::::res://assets/ui/PNG/green_button05.png<>uid://5mdw5vqvh0k7::::res://assets/ui/PNG/green_button13.png<>uid://dya2h5f5tbe8x::::res://assets/ui/PNG/red_button12.png<>uid://dw21b7rva1oqd::::res://scenes/spinner/spinner.tscn<>uid://blnahmsuiwned::::res://assets/ui/PNG/red_button10.png
+::res://scenes/slot/::1717295328
+board_slot.tscn::PackedScene::3189097776868012901::1717295328::0::1::::<><>::res://scenes/slot/slot.gd
+slot.gd::GDScript::-1::1717294315::0::1::::Slot<>Control<>::
 ::res://scenes/spinner/::1716235081
 spinner.gd::GDScript::-1::1716039918::0::1::::<>TextureProgressBar<>::
 spinner.tscn::PackedScene::8760736946045524747::1716235081::0::1::::<><>::uid://be2jnhppu0yhr::::res://assets/ui/Godot Spinner Progress.png<>res://scenes/spinner/spinner.gd
-::res://scenes/start/::1717236555
+::res://scenes/start/::1717295327
 start.gd::GDScript::-1::1715974884::0::1::::<>CanvasLayer<>::
-start.tscn::PackedScene::2240528892354242705::1717236555::0::1::::<><>::res://scenes/start/start.gd<>uid://drvbyxp3ckr8v::::res://assets/ui/PNG/red_button00.png<>uid://blnahmsuiwned::::res://assets/ui/PNG/red_button10.png<>uid://c8sdithnhuqdc::::res://assets/button_label.tres
+start.tscn::PackedScene::2240528892354242705::1717295327::0::1::::<><>::res://scenes/start/start.gd<>uid://drvbyxp3ckr8v::::res://assets/ui/PNG/red_button00.png<>uid://blnahmsuiwned::::res://assets/ui/PNG/red_button10.png<>uid://c8sdithnhuqdc::::res://assets/button_label.tres
 ::res://singletons/::1716808211
 game_manager.gd::GDScript::-1::1716528283::0::1::::<>Node<>::
 ReconnectionInfo.gd::GDScript::-1::1716807048::0::1::::<>Node<>::

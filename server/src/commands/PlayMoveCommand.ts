@@ -62,7 +62,7 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
     });
     this.clock.setTimeout(() => {
       this.playMove(sessionId, pieceType, location);
-    }, 5_000);
+    }, 3_000);
   }
 
   playMove(sessionId: string, pieceType: number, location: number){
@@ -95,7 +95,7 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
       });
     }
     
-    this.checkSmallPieceMatches(matches);
+    this.graduateSmallPieceMatches(matches);
     this.checkAllPiecesArePlacedOnBoard(this.board2d);
     this.copy2dToBoard();
   }
@@ -134,14 +134,21 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
     }
   }
 
-  private checkSmallPieceMatches(matches: any[]){
+  private playerIdxForPiece(piece: number){
+    if(piece === PieceType.LARGE_0 || piece === PieceType.SMALL_0){
+      return 0;
+    }
+    return 1;
+  }
+
+  private graduateSmallPieceMatches(matches: any[]){
 
     let smallPieceMatches = matches.filter((match: any) => {
-      return match["pieces"][0] === match["pieces"][1] 
-             && match["pieces"][1] === match["pieces"][2] 
+      return this.playerIdxForPiece(match["pieces"][0]) === this.playerIdxForPiece(match["pieces"][1]) 
+             && this.playerIdxForPiece(match["pieces"][1]) === this.playerIdxForPiece(match["pieces"][2])
              && (
-                  match["pieces"][0] === PieceType.SMALL_0 || match["pieces"][0] === PieceType.SMALL_1
-                );
+                match["pieces"].some((piece: number) => piece === PieceType.SMALL_0 || piece === PieceType.SMALL_1)
+             );
     });
 
     console.log("smallPieceMatches", smallPieceMatches);
@@ -149,17 +156,14 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
       return;
     }
 
-    let idxToReplace = smallPieceMatches[0]
-    if(smallPieceMatches.length > 1){
-      idxToReplace = smallPieceMatches[Math.floor(Math.random() * smallPieceMatches.length)];
-    }
+    let idxToReplace = smallPieceMatches[Math.floor(Math.random() * smallPieceMatches.length)]
 
-    if(idxToReplace["pieces"][0] === PieceType.SMALL_0){
+    if(idxToReplace["pieces"].some((piece: number) => piece === PieceType.SMALL_0)){
       this.state.players.get(this.state.indexToSessinId[0]).numOfLargePieces += 3;
       idxToReplace["locations"].forEach((location: any) => {
         this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
       });
-    } else if(idxToReplace["pieces"][0] === PieceType.SMALL_1){
+    } else if(idxToReplace["pieces"].some((piece: number) => piece === PieceType.SMALL_1)){
       this.state.players.get(this.state.indexToSessinId[1]).numOfLargePieces += 3;
       idxToReplace["locations"].forEach((location: any) => {
         this.board2d[location[0]][location[1]] = PieceType.NO_PIECE;
@@ -180,10 +184,31 @@ export class PlayMoveCommand extends Command<GameRoom,{ sessionId: string; piece
 
   private checkWinner(matches: any[], board2d: number[][]){
     // check if all large pieces have been placed on board
-    // if(this.state.players.get(this.state.indexToSessinId[this.state.currentTurn]).numOfLargePieces === 0){
-    //   if(this.state.players.get(this.state.indexToSessinId[this.state.currentTurn]).numOfSmallPieces === 0)
-    //     return this.state.currentTurn;
-    // }
+    var playerZeroPieces = 0;
+    for(var row = 2; row < this.BOARD_SIZE + 2; row++){
+      for(var col = 2; col < this.BOARD_SIZE + 2; col++){
+        if(board2d[row][col] ===  PieceType.LARGE_0){
+          playerZeroPieces++;
+        }
+      }
+    }
+
+    var playerOnePieces = 0;
+    for(var row = 2; row < this.BOARD_SIZE + 2; row++){
+      for(var col = 2; col < this.BOARD_SIZE + 2; col++){
+        if(board2d[row][col] ===  PieceType.LARGE_1){
+          playerOnePieces++;
+        }
+      }
+    }
+    
+    if(playerZeroPieces === 8){
+      return 0;
+    }
+
+    if(playerOnePieces === 8){
+      return 1;
+    }
 
     // check if there are three large pieces in a row, column or diagonal
     var winners: Array<number> = [];
